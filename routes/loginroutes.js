@@ -69,3 +69,67 @@ exports.login = function(req,res){
   }
   });
 }
+exports.changepassword = fucntion(req,res){
+	var member_name = req.body.username;
+	var member_oldpassword = req.body.password;
+	var member_newpassword = req.body.newpassword;
+	var sql = 'INSERT INTO member (member_password) VALUES ?;';
+
+	connection.query('SELECT * FROM member WHERE member_name = ?', [member_name], function(err, results, fields) {
+	if (err) {
+		res.send({
+		"code":400,
+		"failed":"error ocurred"
+		})
+	}else{
+		if(results.length > 0){
+			bcrypt.compare(member_password, results[0].member_password, function(err, doesMatch){
+			if(doesMatch){
+				connection.query(sql, [member_newpassword],function(err,rows){
+					if (err) {
+						console.log("error ocurred",err);
+							res.send({"code":400,"failed":"error ocurred"})
+					}
+					else{
+							res.send({
+									"code":200,
+									"success":"change sucessfull"
+          					  })
+					}
+				});
+			
+		}
+		else{
+			res.send({
+				"code":204,
+				"success":"Email and password does not match"
+            });
+		}
+	});
+    }
+    else{
+		res.send({
+			"code":204,
+			"success":"Email does not exits"
+		});
+    }
+  }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
