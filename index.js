@@ -23,7 +23,7 @@ app.get('/', function (req, res) {
 	res.render('pages/default')
 });
 
-app.get('/ttt', function (req, res) {
+app.get('/route', function (req, res) {
 	res.render('pages/lionrock')
 });
 
