@@ -54,6 +54,16 @@ app.get('/login', function (req, res) {
 	res.render('pages/login')
 });
 
+app.get('/logout', function (req, res) {
+	req.session.destroy(function(err) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.redirect('/');
+		}
+	});
+});
+
 app.get('/trail', function(req,res){
 	var trail_id = req.query.id;
 	console.log(trail_id);
