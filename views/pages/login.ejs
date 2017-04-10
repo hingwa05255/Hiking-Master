@@ -1,0 +1,32 @@
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
+    <title>Login</title>
+    <link href="css/login.css" type="text/css" rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+	<header><% include ../partials/header1 %></header>
+		<div class="body">
+    <div id="wrap">
+	 
+        <!-- title and description -->   
+        <h3>Login</h3>
+        <div style = "font-size:11px; color:#FF0000; margin-top:10px; text-align: center;"><?php echo $error; ?></div>
+        <!-- start sign up form -->  
+        <form name="login" action="http://localhost:3000/login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" value="" required/>
+            <label for="password">Password:</label>
+            <input type="password" name="password" value="" required/>
+			<font color="red">Doesn't have an account? Click <a href="/signup">here</a></font><br><br>
+            <input type="submit" name="sent" class="submit_button" value="Login" />
+        </form>
+        <!-- end sign up form -->
+         
+    </div>
+    <!-- end wrap div -->
+</div>
+</body>
+</html>

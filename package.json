@@ -1,0 +1,22 @@
+{
+  "name": "HikingMaster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Group 9",
+  "license": "ISC",
+  "dependencies":
+  {
+  	"express": "",
+  	"mysql": "",
+  	"body-parser": "",
+  	"pug": "",
+	"stylus": "",
+	"nib": "",
+	"ejs": "",
+	"bcryptjs" : ""
+  }
+}

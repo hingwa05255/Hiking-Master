@@ -1,0 +1,89 @@
+*{
+    padding: 0; /* Reset all padding to 0 */
+    margin: 0; /* Reset all margin to 0 */
+}
+ 
+body{
+    background-image: url("../images/background.png");
+    font: 16px "Arial";  /* Set global font size & family */
+    color: #464646; /* Set global text color */
+}
+ 
+/* Wrap */
+#wrap{
+    position : absolute;    
+    width    : 300px;
+    left     : 50%;
+    top      : 50%;
+    margin-left : -150px; /* half of the width  */
+    margin-top  : -100px; /* half of the height */
+    text-align: center;
+    background: #FFFFFF; /* Set content background to white */
+    padding: 5px 10px 5px 10px; /* Padding to make some more space for our text */
+    border: 1px solid #DFDFDF; /* Small border for the finishing touch */
+	border-radius: 8px;
+    /* Center our content text */
+}
+ 
+#wrap h3{
+    font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
+	font-weight: bold;
+	text-align: center;
+}
+ 
+/* Form & Input field styles */
+ 
+form{
+    margin-top: 10px; /* Make some more distance away from the description text */
+	font-weight: bold;
+	text-align: center;
+	}
+	
+form .submit_button{
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  border: 1px solid #3ac162;
+  margin-bottom: 8px;
+}
+
+label {
+  text-align: left;
+  display: block;
+  margin-bottom: 0px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 12px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 10px;
+  width: 95.5%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 8px;
+}
+
+.text-danger{
+	font-size: 8px;
+	color:#FF0000
+	}

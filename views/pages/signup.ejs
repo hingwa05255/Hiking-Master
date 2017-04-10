@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
+    <title>Sign up</title>
+    <link href="css/signup.css" type="text/css" rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	function validateForm(){
+		var pw1 = document.forms["signup"]["password"].value;
+		var pw2 = document.forms["signup"]["re_password"].value;
+		if (pw1 != pw2) {
+			alert("Passwords do not match!");
+			return false;
+		}
+	}
+	</script>
+</head>
+<body>
+    <!-- start header div -->
+	<header><% include ../partials/header1 %></header>
+    <!-- end header div -->  
+	<div class="body">
+    <!-- start wrap div -->  
+		<div class="wrap">
+	 
+        <!-- title and description -->   
+        <h3>Sign Up</h3>
+         
+        <!-- start sign up form -->  
+        <form name="signup" action="http://localhost:3000/register" method="post" onsubmit="return validateForm()">
+            <label for="username">Username:</label>
+            <input type="text" name="username" value="" required/>
+            <label for="password">Password:</label>
+            <input type="password" name="password" value="" required/>
+            <label for="username">Re-enter your password:</label>
+            <input type="password" name="re_password" value="" required/>
+            <label for="email">Email:</label>
+            <input type="email" name="email" value="" required/>
+			<label for="dateofbirth">Date of birth</label><input type="date" name="dateofbirth" required/>
+			<label for="gender">Gender:</label>
+            <label for="male"><input type="radio" name="gender" value="M" id="male" required>Male</input></label>
+			<label for="female"><input type="radio" name="gender" value="F" id="female" required>Female</input></label>
+			<font color="red">Have an account already? Click <a href="/login">here</a></font><br><br>
+            <input type="submit" name="sent" class="submit_button" value="Sign up" />
+        </form>
+        <!-- end sign up form -->
+		</div></div>
+    <!-- end wrap div -->
+</body>
+</html>
