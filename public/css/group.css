@@ -1,3 +1,4 @@
+
 *{
     padding: 0; /* Reset all padding to 0 */
     margin: 0; /* Reset all margin to 0 */
@@ -17,7 +18,7 @@ body{
     top      : 25%;
     margin-left : -200px; /* half of the width  */
     margin-top  : 0px; /* half of the height */
-    background: #FFFFFF; /* Set content background to white */
+    background: teal; /* Set content background to white */
     padding: 5px 10px 5px 10px; /* Padding to make some more space for our text */
     border: 1px solid #DFDFDF; /* Small border for the finishing touch */
 	border-radius: 8px;

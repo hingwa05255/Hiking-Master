@@ -13,10 +13,10 @@
           <ul class="nav navbar-nav">
 			<li><a href="/">Home</font></a></li>
 			<li><a href="/route">Routes</font></a></li>
-			<li><a href="">Groups</font></a></li>
+			<li><a href="/group">Groups</font></a></li>
 			<li><a href="">Tips</font></a></li>
 			</ul>
-			
+
 			<% if (session.username){ %>
 			<ul class="nav navbar-nav navbar-right">
 			<li><a href="/signup"><span class="glyphicon glyphicon-user"></span><%=session.username%></a></li>
@@ -28,8 +28,8 @@
 			<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
 			<% }%>
-			
-			
+
+
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -40,4 +40,3 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
-

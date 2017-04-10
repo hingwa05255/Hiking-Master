@@ -86,7 +86,7 @@ app.get('/trail', function(req,res){
 				var trail = trails[0];
 				res.send(trail);
 				}
-			
+
 			else
 			{
 				console.log(err);
@@ -94,6 +94,10 @@ app.get('/trail', function(req,res){
 			}
 			});
 	}
+});
+
+app.get('/group', function (req, res) {
+	res.render('pages/group')
 });
 
 app.post('/register',login.register);
