@@ -17,6 +17,7 @@
 	"stylus": "",
 	"nib": "",
 	"ejs": "",
-	"bcryptjs" : ""
+	"bcryptjs" : "",
+	"session": ""
   }
 }

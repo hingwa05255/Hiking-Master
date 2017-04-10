@@ -28,7 +28,7 @@ exports.register = function(req,res){
 			res.send({"code":400,"failed":"error ocurred"})
 		}else{
 			console.log('The solution is: success');
-			res.send({"code":200,"success":"user registered sucessfully"});
+			res.render('pages/success');
 		}
 	});
 }
