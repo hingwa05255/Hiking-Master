@@ -49,7 +49,6 @@ app.get('/trail', function(req,res){
 			if (!err)
 			{
 				res.send(rows);
-				res.render('pages/lionrock');
 			}
 			else
 			{

@@ -3,44 +3,71 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link href="css/login.css" type="text/css" rel="stylesheet" />
 	<title>Trail</title>
-	<script>
-	var QueryString = function () {
-  // This function is anonymous, is executed immediately and 
-  // the return value is assigned to QueryString!
-  var query_string = {};
-  var query = window.location.search.substring(1);
-  var vars = query.split("&");
-  for (var i=0;i<vars.length;i++) {
-    var pair = vars[i].split("=");
-        // If first entry with this name
-    if (typeof query_string[pair[0]] === "undefined") {
-      query_string[pair[0]] = decodeURIComponent(pair[1]);
-        // If second entry with this name
-    } else if (typeof query_string[pair[0]] === "string") {
-      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
-      query_string[pair[0]] = arr;
-        // If third or later entry with this name
-    } else {
-      query_string[pair[0]].push(decodeURIComponent(pair[1]));
-    }
-  } 
-  return query_string;
-}();
-
-	alert(QueryString.id);
+	<script type="text/javascript" src="scripts/querystring.js" ></script>
 	
+	<style>
+		#wrap, #list { display: None; }
 	
+		#list { margin-top: 100px; background-color: blue; }
 	
-	
-	</script>
-	
-	
-	
+		#trailName {
+			text-align: center;
+			font-size: 20px;
+			background-color: red;
+		}
+		
+		#list a {
+			display: block;
+			color: red;
+		}
+	</style>
 </head>
 <body>
 	<header><% include ../partials/header1 %></header>
 	<div id="wrap">
-
+		<h3 id="trailName"></h3>
+		<div id=""></div>
 	</div>
+	<div id="list">
+	</div>
+	<script>
+
+	var trail_id = QueryString.id
+	
+	if (trail_id == null) {
+		document.getElementById('list').style.display = "block";
+		
+		loadXMLDoc("trail", function(jsonString) {
+			var json = JSON.parse(jsonString);
+			
+			var list = document.getElementById('list');
+			
+			for (var i = 0; i < json.length; i++) {
+				var a = document.createElement('a');
+				a.appendChild(document.createTextNode(json[i].trail_name));
+				a.setAttribute('href', 'ttt?id=' + json[i].trail_id);
+			
+				list.appendChild(a);
+			}
+		});
+		
+	} else {
+		var url = "trail?id=" + trail_id;
+		
+		document.getElementById('wrap').style.display = "block";
+		
+		loadXMLDoc(url, function(jsonString) {
+			var json = JSON.parse(jsonString);
+		
+			var trailNameDiv = document.getElementById('trailName');
+			trailNameDiv.appendChild(document.createTextNode(json.trail_name));
+			
+			
+		});
+	}
+	
+	
+		
+	</script>
 </body>
 </html>
