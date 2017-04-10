@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var path = require('path');
@@ -11,6 +12,16 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 app.listen(3000, function() { console.log('App started!'); });
+
+app.use(session({secret: 'ssshhhhh',
+    resave: true,
+    saveUninitialized: true
+}));
+
+app.use(function(req, res, next){
+  res.locals.session = req.session;
+  next();
+});
 
 var connection = mysql.createConnection({
 	host: 'localhost',
@@ -28,9 +39,12 @@ app.get('/', function (req, res) {
 });
 
 app.get('/route', function (req, res) {
-	res.render('pages/lionrock')
+	res.render('pages/route')
 });
 
+app.get('/welcome', function (req, res) {
+	res.render('pages/welcome')
+});
 
 app.get('/signup', function (req, res) {
 	res.render('pages/signup')

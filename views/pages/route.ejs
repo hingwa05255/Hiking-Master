@@ -1,7 +1,8 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	<link href="css/login.css" type="text/css" rel="stylesheet" />
+	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
+	<link href="css/route.css" type="text/css" rel="stylesheet" />
 	<title>Trail</title>
 	<script type="text/javascript" src="scripts/querystring.js" ></script>
 	
@@ -13,7 +14,6 @@
 		#trailName {
 			text-align: center;
 			font-size: 20px;
-			background-color: red;
 		}
 		
 		#list a {
@@ -29,6 +29,7 @@
 		<div id=""></div>
 	</div>
 	<div id="list">
+	<h3>Routes</h3>
 	</div>
 	<script>
 
@@ -45,7 +46,7 @@
 			for (var i = 0; i < json.length; i++) {
 				var a = document.createElement('a');
 				a.appendChild(document.createTextNode(json[i].trail_name));
-				a.setAttribute('href', 'ttt?id=' + json[i].trail_id);
+				a.setAttribute('href', 'route?id=' + json[i].trail_id);
 			
 				list.appendChild(a);
 			}
