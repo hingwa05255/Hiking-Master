@@ -19,6 +19,10 @@ var connection = mysql.createConnection({
 	database: 'hiking_master'
 });
 
+app.get('/success', function (req, res) {
+	res.render('pages/success')
+});
+
 app.get('/', function (req, res) {
 	res.render('pages/default')
 });
