@@ -43,18 +43,21 @@ body{
     width    : 800px;
     left     : 50%;
     margin-left : -400px; /* half of the width  */
+	margin-bottom : 2%; /* half of the width  */
     background: #FFFFFF; /* Set content background to white */
     padding: 0px 10px 5px 10px; /* Padding to make some more space for our text */
-    border: 1px solid #DFDFDF; /* Small border for the finishing touch */
+    border: 3px solid #00CC00; /* Small border for the finishing touch */
 	border-radius: 8px;
     /* Center our content text */
 }
 
 #list a {
+	padding: 0px 0px 5px 10px; /* Padding to make some more space for our text */
 	text-decoration: none;
+	height: 181px;
 	display: block;
 	color: green;
-	border: 1px solid #00FF00;
+	border: 1px solid #DDDDDD;
 }
 
 #list a h3 {
@@ -63,6 +66,28 @@ body{
 	text-align: left;
 }
 
+#list form {
+	text-decoration: none;
+	font-family: Arial;
+	font-weight: normal;
+    float: right;
+}
+
+#list a img {
+	float: right;
+}
+
 #list a:hover { 
     background-color: #EEEEEE;
+}
+
+.button {
+				font-family: Arial;
+                border:2px solid #00cc00;
+                background-color:#00cc00;
+                color:#fafafa;
+}
+.button:hover  {
+                background-color:#fafafa;
+                color:#00cc00;
 }

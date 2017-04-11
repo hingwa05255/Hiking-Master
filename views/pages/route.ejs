@@ -22,7 +22,7 @@
 		<div id=""></div>
 	</div>
 	<div id="list">
-	<h3>Routes</h3>
+	<h3>Routes<form><input type="text" placeholder="Search..." required><input type="button" value="Search" class="button"></form></h3>
 	</div>
 	<script>
 
@@ -37,6 +37,11 @@
 				var a = document.createElement('a');
 				var br = document.createElement("br");
 				var h3 = document.createElement("h3");
+				var img = document.createElement("img");
+				img.src="images/background.png";
+				img.height="180";
+				img.width="320";
+				a.appendChild(img);
 				h3.appendChild(document.createTextNode(json[i].trail_name));
 				a.appendChild(h3);
 				a.appendChild(document.createTextNode('District: ' + json[i].trail_district));
