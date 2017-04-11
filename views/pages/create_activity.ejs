@@ -1,0 +1,38 @@
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
+    <title>Create Activity</title>
+</head>
+
+<body>
+    <!-- start header div -->
+    <header><% include ../partials/header1 %></header>
+    <!-- end header div -->
+    <div class="body">
+    <!-- start wrap div -->
+    <div class="wrap">
+
+    <!-- title and description -->
+    <h3>Sign Up</h3>
+
+    <!-- start create activity form -->
+    <form name="create_activity" action="http://localhost:3000/create_activity" method="post" onsubmit="return
+        validateForm()">
+        <label for="title">Title:</label>
+        <input type="text" name="title" value="" required/>
+        <label for="date">Date:</label>
+        <input type="date" name="date" required/>
+        <label for="time">Time:</label>
+        <input type="text" name="time" value="" required/>
+        <label for="location">Location:</label>
+        <input type="text" name="location" value="" required/>
+        <label for="content">Content:</label>
+        <input type="text" name="content" value="" required/>
+        <input type="submit" name="sent" class="submit_button" value="Submit" />
+    </form>
+    <!-- end create activity form -->
+    </div></div>
+    <!-- end wrap div -->
+</body>
+</html>

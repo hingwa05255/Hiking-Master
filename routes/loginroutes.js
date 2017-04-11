@@ -75,6 +75,7 @@ exports.login = function(req,res){
 			bcrypt.compare(member_password, results[0].member_password, function(err, doesMatch){
 			if(doesMatch){
 				req.session.username = member_name;
+				req.session.userid = results[0].member_id;
 				res.render('pages/success',{"code":200,"success":"You have successfully logged in!"});
 			
 		}

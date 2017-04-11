@@ -51,7 +51,38 @@ app.get('/welcome', function (req, res) {
 });
 
 app.get('/group', function (req, res) {
-	res.render('pages/group')
+	
+	if (req.session.username != null)
+		res.render('pages/group');
+	else
+		res.redirect('/login');
+});
+
+app.get('/activity', function(req,res){
+	var activity_id = req.query.id;
+	if (activity_id == null)	{
+		var sql = 'SELECT * FROM activity;';
+		connection.query(sql, null, function(err, rows){
+			if (!err){
+				res.send(rows);
+			}else{
+				console.log(err);
+			}
+		});
+	}
+	else{
+		var sql = 'SELECT activity.*, DATE_FORMAT(activity_date, "%d/%m/%Y") AS formatted_date, member.member_name, trail_name FROM activity, member, trail WHERE trail_id = activity_trail_id AND activity_id = ? AND activity_creator_id = member_id;';
+		var params = [activity_id];
+		connection.query(sql, params, function(err, activities){
+			if (!err && activities.length == 1){
+				var activity = activities[0];
+				res.send(activity);
+			}else{
+				console.log(err);
+				res.send({'status':'failed'});
+			}
+			});
+	}
 });
 
 app.get('/signup', function (req, res) {
@@ -64,6 +95,7 @@ app.get('/login', function (req, res) {
 app.get('/changepassword', function (req, res){
 	res.render('pages/changepassword')
 });
+
 app.post('/changepassword', login.changepassword);
 
 app.get('/logout', function (req, res) {
@@ -161,3 +193,56 @@ app.get('/text', function(req,res){
 
 app.post('/register',login.register);
 app.post('/login', login.login);
+app.post('/join', function(req,res){
+	var post_id = req.query.aid;
+	var member_id = req.session.userid;
+	connection.query('SELECT * FROM participate WHERE member_id = ? AND activity_id = ?;', [member_id, post_id], function(err, results, fields){
+		if (err) {
+				res.send({
+				"code":400,
+				"failed":"error ocurred"
+				})
+			}
+		else{
+			if(results.length>0){
+					res.render('pages/error',{"code":500,"failed":"You have already joined this group!"});
+				}
+				else{
+					var sql = 'INSERT INTO participate VALUES (?, ?);';
+					connection.query(sql, [member_id, post_id],function(err,rows){
+						if (err) {
+							console.log("error ocurred",err);
+							res.send({"code":402,"failed":"error ocurred"});
+						}
+						else{
+							res.render('pages/success',{"code":500,"success":"You have successfully registered in this activity!"});
+						}
+					});
+				}
+		}
+	});
+});
+
+app.get('/mygroups', function(req,res){
+	var member_id = req.session.userid;
+	var sql = 'SELECT DISTINCT * FROM participate WHERE member_id = ?;';
+	connection.query(sql,[member_id], function(err, results){
+		if(err){
+			res.send({
+				"code":401,
+				"failed":"error ocurred"
+			})
+		}else{
+			if(results.length > 0) {
+				res.send(results);
+			} else {
+				res.render('pages/error',{"code":500,"failed":"You haven't joined any group yet."});
+			}
+		}
+	});
+});
+
+
+
+
+
