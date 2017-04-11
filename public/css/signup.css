@@ -1,28 +1,24 @@
+*{
+    padding: 0; /* Reset all padding to 0 */
+    margin: 0; /* Reset all margin to 0 */
+}
+
 body{
-	position : relative;
     background-image: url("../images/background.png");
     font: 16px "Arial";  /* Set global font size & family */
     color: #464646; /* Set global text color */
-	overflow: hidden;
 	clear: both;
 }
 
-.body {
-   min-height: 100%
-   margin-bottom: 100px;
-   padding-top: 30%;
-   padding-bottom: 17%;
-   clear: both;
-}
 
 /* Wrap */
 .wrap{
-	position : absolute;
+	position : relative;
     width    : 400px;
     left     : 50%;
     top      : 25%;
     margin-left : -200px; /* half of the width  */
-    margin-top  : -100px; /* half of the height */
+    margin-top  : 5%; /* half of the height */
     background: #FFFFFF; /* Set content background to white */
     padding: 5px 10px 5px 10px; /* Padding to make some more space for our text */
     border: 1px solid #DFDFDF; /* Small border for the finishing touch */
