@@ -8,12 +8,24 @@ body{
     font: 16px "Arial";  /* Set global font size & family */
     color: #464646; /* Set global text color */
 }
- 
+
 /* Wrap */
+<<<<<<< HEAD
 #gallery{
 	position : absolute;    
     width    : 70%;
     left     : 15%;
+=======
+#wrap{
+<<<<<<< HEAD
+	position : absolute;
+    width    : 400px;
+=======
+	position : absolute;    
+    width    : 800px;
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
+    left     : 50%;
+>>>>>>> fc998b0b6ecf2ba3bb8e2325f54f0ec76e0c50eb
     top      : 11%;
     margin-top  : 0px; /* half of the height */
 	margin-bottom : 11px;
@@ -23,8 +35,13 @@ body{
 	border-radius: 8px;
     /* Center our content text */
 }
+<<<<<<< HEAD
  
 #gallery h3{
+=======
+
+#wrap h3{
+>>>>>>> fc998b0b6ecf2ba3bb8e2325f54f0ec76e0c50eb
     font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
 	font-weight: bold;
 	text-align: center;
@@ -58,9 +75,13 @@ body{
 }
 
 #list{
+<<<<<<< HEAD
+	position : absolute;
+=======
 	top      : 11%;
 	background-color: white;
 	position : absolute;    
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
     width    : 800px;
     left     : 50%;
     margin-left : -400px; /* half of the width  */
@@ -71,6 +92,8 @@ body{
 	border-radius: 8px;
     /* Center our content text */
 }
+<<<<<<< HEAD
+=======
 
 #list a {
 	padding: 0px 0px 5px 10px; /* Padding to make some more space for our text */
@@ -112,3 +135,4 @@ body{
                 background-color:#fafafa;
                 color:#00cc00;
 }
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b

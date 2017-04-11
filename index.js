@@ -150,13 +150,33 @@ app.get('/text', function(req,res){
 			if (!err && trails.length == 1){
 				var trail = trails[0];
 				res.send(trail);
+<<<<<<< HEAD
+				}
+
+			else
+			{
+=======
 			}else{
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
 				console.log(err);
 				res.send({'status':'failed'});
 			}
 			});
 	}
 });
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+
+app.get('/group', function (req, res) {
+	res.render('pages/group')
+});
 
 app.post('/register',login.register);
+app.post('/login',login.login);
+=======
+>>>>>>> fc998b0b6ecf2ba3bb8e2325f54f0ec76e0c50eb
+app.post('/register',login.register);
 app.post('/login', login.login);
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b

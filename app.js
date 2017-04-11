@@ -119,6 +119,11 @@ app.get('/route', function(req, res) {
 	// res.send(routes);
 });
 
+app.get('/group', function(req, res) {
+
+});
+
+
 app.post('/trail', function(req,res){
 	var trail_name = req.body.name;
 	var trail_district = req.body.district;
@@ -183,7 +188,7 @@ app.get('/trail', function(req,res){
 				var trail = trails[0];
 				res.send(trail);
 				}
-			
+
 			else
 			{
 				console.log(err);
@@ -250,7 +255,7 @@ app.get('/activity', function(req,res){
 				var activity = activities[0];
 				res.send(activity);
 				}
-			
+
 			else
 			{
 				console.log(err);
@@ -295,14 +300,3 @@ app.post(endPoint, function(req,res){
     	});
 
 });
-
-
-
-
-
-
-
-
-
-
-

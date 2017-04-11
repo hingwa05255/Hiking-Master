@@ -6,14 +6,32 @@
 	<link href="css/gallery.css" type="text/css" rel="stylesheet" />
 	<title>Trail</title>
 	<script type="text/javascript" src="scripts/querystring.js" ></script>
-	
+
 	<style>
+<<<<<<< HEAD
 		#detail, #list { display: None; }
+=======
+		#wrap, #list { display: None; }
+<<<<<<< HEAD
+
+		#list { margin-top: 100px; background-color: blue; }
+
+=======
+>>>>>>> fc998b0b6ecf2ba3bb8e2325f54f0ec76e0c50eb
 	
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
 		#trailName {
 			text-align: center;
 			font-size: 20px;
 		}
+<<<<<<< HEAD
+
+		#list a {
+			display: block;
+			color: red;
+		}
+=======
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
 	</style>
 </head>
 <body>
@@ -25,6 +43,51 @@
 	
 		<h3 id="trailName"></h3>
 		<div id=""></div>
+<<<<<<< HEAD
+	</div>
+	<div id="list">
+	<h3>Routes</h3>
+	</div>
+	<script>
+
+	var trail_id = QueryString.id
+
+	if (trail_id == null) {
+		document.getElementById('list').style.display = "block";
+
+		loadXMLDoc("trail", function(jsonString) {
+			var json = JSON.parse(jsonString);
+
+			var list = document.getElementById('list');
+
+			for (var i = 0; i < json.length; i++) {
+				var a = document.createElement('a');
+				a.appendChild(document.createTextNode(json[i].trail_name));
+				a.setAttribute('href', 'route?id=' + json[i].trail_id);
+
+				list.appendChild(a);
+			}
+		});
+
+	} else {
+		var url = "trail?id=" + trail_id;
+
+		document.getElementById('wrap').style.display = "block";
+
+		loadXMLDoc(url, function(jsonString) {
+			var json = JSON.parse(jsonString);
+
+			var trailNameDiv = document.getElementById('trailName');
+			trailNameDiv.appendChild(document.createTextNode(json.trail_name));
+
+
+		});
+	}
+
+
+
+	</script>
+=======
 		
 		<div class="slideshow-container">
 			<div class="mySlides"><img id="img1" style="width:100%"></div>
@@ -72,5 +135,6 @@
 	<h3>Routes<form name="search" action="http://localhost:3000/search" method="post"><input type="text" placeholder="Search..." required><input type="submit" value="Search" class="button"></form></h3>
 	</div>
 	<script type="text/javascript" src="scripts/trail.js" ></script>
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
 </body>
 </html>

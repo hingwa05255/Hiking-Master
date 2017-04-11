@@ -1,0 +1,140 @@
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
+	<link href="css/group.css" type="text/css" rel="stylesheet" />
+  <script src="alert/dist/alertify.min.js"></script>
+	<link rel="stylesheet" href="alert/dist/alertify.core.css" />
+	<link rel="stylesheet" href="alert/dist/alertify.default.css" id="toggleCSS" />
+	<title>Groups</title>
+	<!--<script type="text/javascript" src="scripts/querystring.js" ></script>-->
+</head>
+<body>
+  <script>
+  var postNum=0;
+  var showingActivity=0;
+  var test=0;
+
+  function addListItem() {
+    var ul = document.getElementById("postList");
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode("PostNo: " + postNum));
+    li.setAttribute("id", "post"+postNum);
+    li.setAttribute("onclick", "showActivity()");
+    postNum = postNum+1;
+    console.log("postNum: "+postNum);
+    ul.appendChild(li);
+  }
+
+  function delListItem() {
+      var ul = document.getElementById("postList");
+      if(postNum>0){
+        ul.removeChild(ul.childNodes[postNum]);
+        postNum = postNum-1;
+        console.log("postNum: "+postNum);
+        if(postNum===0){
+            var div = document.getElementById("activityRegion");
+            while (div.hasChildNodes()) {
+              div.removeChild(div.lastChild);
+            }
+            var li = document.createElement("h3");
+            li.appendChild(document.createTextNode("Activity not yet selected"));
+            li.setAttribute("id", "noAct");
+            div.appendChild(li);
+            showingActivity=0;
+        }
+      }
+  }
+
+  function showActivity() {
+    var ul = document.getElementById("activityRegion");
+    if(showingActivity===1){
+      while (ul.hasChildNodes()) {
+        ul.removeChild(ul.lastChild);
+      }
+    }
+    else{
+      removeDummy();
+    }
+    var block0 = document.createElement("div");
+    block0.appendChild(document.createTextNode("ActivityInfo: " + test));
+    block0.setAttribute("id", "ActivityIDdiv");
+    block0.setAttribute("class", "infoBlock");
+    block0.setAttribute("style", "height: 25%");
+    ul.appendChild(block0);
+    test = test + 1;
+    console.log("test: "+test);
+    showingActivity = 1;
+    var wrapblock = document.createElement("div");
+    wrapblock.setAttribute("id", "wrapblock");
+    wrapblock.setAttribute("class", "infoBlock");
+    wrapblock.setAttribute("style", "height: 25%");
+    ul.appendChild(wrapblock);
+    var block1 = document.createElement("div");
+    block1.appendChild(document.createTextNode("Name: <PosterName>"));
+    block1.setAttribute("id", "namediv");
+    block1.setAttribute("class", "infoBlock");
+    block1.setAttribute("style", "display: inline-block");
+    wrapblock.appendChild(block1);
+    var block2 = document.createElement("div");
+    block2.appendChild(document.createTextNode("PosterID: <PosterID>"));
+    block2.setAttribute("id", "PosterIDdiv");
+    block2.setAttribute("class", "infoBlock");
+    block2.setAttribute("style", "display: inline-block");
+    wrapblock.appendChild(block2);
+    var block3 = document.createElement("div");
+    block3.appendChild(document.createTextNode("PostDate: <PostDate>"));
+    block3.setAttribute("id", "PostDatediv");
+    block3.setAttribute("class", "infoBlock");
+    block3.setAttribute("style", "display: inline-block");
+    wrapblock.appendChild(block3);
+    var block4 = document.createElement("div");
+    block4.appendChild(document.createTextNode("ActivityName: <ActivityName>"));
+    block4.setAttribute("id", "ActivityNamediv");
+    block4.setAttribute("class", "infoBlock");
+    block4.setAttribute("style", "height: 25%");
+    ul.appendChild(block4);
+    var block5 = document.createElement("div");
+    block5.appendChild(document.createTextNode("Click to see RouteDetail"));
+    block5.setAttribute("id", "RouteDetaildiv");
+    block5.setAttribute("class", "infoBlock");
+    block5.setAttribute("style", "height: 25%");
+    ul.appendChild(block5);
+  }
+
+  function removeDummy() {
+    var elem = document.getElementById('noAct');
+    elem.parentNode.removeChild(elem);
+    return false;
+  }
+
+  </script>
+  <div class="whole">
+    <div class="header">
+      <header><% include ../partials/header1 %></header>
+    </div>
+    <div class="nonheader">
+      <div class="left">
+        <div class="searchPost">
+          <form>
+          	<div class="text">Search post by keywords:<input type="search" placeholder="Search"></div>
+          </form>
+          <div class="addBut" onclick="addListItem()">ADD</div>
+          <div class="delBut" onclick="delListItem()">DEL</div>
+        </div>
+        <div class="post" id="scroll_one">
+          <ul class="list" id="postList">
+          </ul>
+        </div>
+      </div>
+      <div class="right">
+        <div class="ActivityInfo" id="activityRegion"><h3 id="noAct">Activity not yet selected</h3></div>
+        <div class="right_bottom">
+          <div class="commentlist"></div>
+          <div class="inputbox"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
