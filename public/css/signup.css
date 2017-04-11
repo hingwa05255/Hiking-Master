@@ -10,16 +10,15 @@ body{
 	clear: both;
 }
 
-
 /* Wrap */
 .wrap{
-	position : relative;
+	position : absolute;    
     width    : 400px;
     left     : 50%;
-    top      : 25%;
+    top      : 11%;
     margin-left : -200px; /* half of the width  */
-    margin-top  : 5%; /* half of the height */
-    background: #FFFFFF; /* Set content background to white */
+    margin-top  : 0px; /* half of the height */
+    background-color: #FFFFFF; /* Set content background to white */
     padding: 5px 10px 5px 10px; /* Padding to make some more space for our text */
     border: 1px solid #DFDFDF; /* Small border for the finishing touch */
 	border-radius: 8px;
