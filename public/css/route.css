@@ -10,26 +10,47 @@ body{
 }
  
 /* Wrap */
-#wrap{
+#gallery{
 	position : absolute;    
-    width    : 800px;
-    left     : 50%;
+    width    : 70%;
+    left     : 15%;
     top      : 11%;
-    margin-left : -400px; /* half of the width  */
     margin-top  : 0px; /* half of the height */
+	margin-bottom : 11px;
     background: #FFFFFF; /* Set content background to white */
-    padding: 5px 10px 5px 10px; /* Padding to make some more space for our text */
+    padding: 10px 10px 10px 10px; /* Padding to make some more space for our text */
     border: 1px solid #DFDFDF; /* Small border for the finishing touch */
 	border-radius: 8px;
     /* Center our content text */
 }
  
-#wrap h3{
+#gallery h3{
     font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
 	font-weight: bold;
 	text-align: center;
+	background-color: #00cc00;
+	margin-top:0px;
+	margin-bottom:0px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+	
+#gallery pre{
+	white-space: pre-wrap;
+	margin-bottom: 0px;
+	text-align: justify;
+	word-break: keep-all;
+	background-color: #ffffff;
+	font: 15px Arial;
+	border: none;
 }
 
+#gallery th{
+	text-align: center;
+	
+	
+}
+	
 #list h3{
     font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
 	font-weight: bold;

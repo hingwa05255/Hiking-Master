@@ -116,6 +116,34 @@ app.get('/trail', function(req,res){
 		});
 	}
 	else{
+		var sql = 'SELECT * FROM trail, coor WHERE trail.trail_id = ? AND trail.trail_id = coor.trail_id;';
+		var params = [trail_id];
+		connection.query(sql, params, function(err, trails){
+			if (!err && trails.length == 1){
+				var trail = trails[0];
+				res.send(trail);
+			}else{
+				console.log(err);
+				res.send({'status':'failed'});
+			}
+			});
+	}
+});
+
+app.get('/text', function(req,res){
+	var trail_id = req.query.id;
+	console.log(trail_id);
+	if (trail_id == null)	{
+		var sql = 'SELECT * FROM trail;';
+		connection.query(sql, null, function(err, rows){
+			if (!err){
+				res.render(rows);
+			}else{
+				console.log(err);
+			}
+		});
+	}
+	else{
 		var sql = 'SELECT * FROM trail WHERE trail_id = ?;';
 		var params = [trail_id];
 		connection.query(sql, params, function(err, trails){
@@ -129,5 +157,6 @@ app.get('/trail', function(req,res){
 			});
 	}
 });
+
 app.post('/register',login.register);
 app.post('/login', login.login);

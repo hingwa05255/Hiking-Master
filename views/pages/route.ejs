@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="scripts/querystring.js" ></script>
 	
 	<style>
-		#wrap, #list { display: None; }
+		#detail, #list { display: None; }
 	
 		#trailName {
 			text-align: center;
@@ -19,7 +19,10 @@
 <body>
 	<header><% include ../partials/header1 %></header>
 	
-	<div id="wrap">
+	<div id="detail">
+
+	<div id="gallery">
+	
 		<h3 id="trailName"></h3>
 		<div id=""></div>
 		
@@ -29,14 +32,40 @@
 			<div class="mySlides"><img id="img3" style="width:100%"></div>
 			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
-		</div><br>
+		</div>
 		<div style="text-align:center">
 			<span class="dot" onclick="currentSlide(1)"></span> 
 			<span class="dot" onclick="currentSlide(2)"></span> 
 			<span class="dot" onclick="currentSlide(3)"></span> 
 		</div>
 		<script type="text/javascript" src="scripts/gallery.js" ></script>
+		<br>
+		<h3>Information</h3>
+		<table border="1" width="100%">
+		  <col width="20%">
+		  <col width="80%">
+		  <tr>
+			<th>Name</th>
+			<td><pre id="name"></pre></td>
+		  </tr>
+		  <tr>
+			<th>Difficulty</th>
+			<td><pre id="difficulty"></pre></td>
+		  </tr>
+		  <tr>
+			<th>Transport</th>
+			<td><pre id="transport"></pre></td>
+		  </tr>
+		  <tr>
+			<th>Description</th>
+			<td><pre id="description"></pre></td>
+		  </tr>
+		</table>
+		<br>
+		<h3>Map location</h3>
 		
+		<% include ./htmlforgooglemap %>
+	</div>
 	</div>
 	
 	<div id="list">

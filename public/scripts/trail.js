@@ -23,7 +23,7 @@
 		});
 	} else {
 		var url = "trail?id=" + trail_id;
-		document.getElementById('wrap').style.display = "block";
+		document.getElementById('detail').style.display = "block";
 		loadXMLDoc(url, function(jsonString) {
 			var json = JSON.parse(jsonString);
 			var trailNameDiv = document.getElementById('trailName');
@@ -35,6 +35,19 @@
 			img1.src="images/" + json.trail_photo1;
 			img2.src="images/" + json.trail_photo2;
 			img3.src="images/" + json.trail_photo3;
+			
+			var name = document.getElementById('name');
+			var difficulty = document.getElementById('difficulty');
+			var transport = document.getElementById('transport');
+			var description = document.getElementById('description');
+			
+			name.appendChild(document.createTextNode(json.trail_name));
+			difficulty.appendChild(document.createTextNode(json.trail_difficulty + "/5"));
+			transport.appendChild(document.createTextNode(json.trail_transport));
+			description.appendChild(document.createTextNode(json.trail_description));
 
+			var a = document.createElement('a');
+			a.appendChild(document.createTextNode(json.lat1));
+			description.appendChild(a);
 		});
 	}

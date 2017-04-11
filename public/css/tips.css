@@ -41,17 +41,14 @@ body{
     background: #FFFFFF; /* Set content background to white */
     padding: 5px 10px 5px 10px; /* Padding to make some more space for our text */
     border: 1px solid #DFDFDF; /* Small border for the finishing touch */
-  border-radius: 8px;
+	border-radius: 8px;
+	margin-bottom : 5px;
     /* Center our content text */
  }
 
 ul{
   list-style-position:  inside;
   list-style-image: url('../images/hillicon.png');
-
-
-
-
 }
 
 
