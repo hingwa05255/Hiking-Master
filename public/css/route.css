@@ -14,7 +14,7 @@ body{
 	position : absolute;    
     width    : 400px;
     left     : 50%;
-    top      : 25%;
+    top      : 11%;
     margin-left : -200px; /* half of the width  */
     margin-top  : 0px; /* half of the height */
     background: #FFFFFF; /* Set content background to white */
@@ -34,19 +34,35 @@ body{
     font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
 	font-weight: bold;
 	text-align: center;
-	background-color: white;
 }
 
 #list{
+	top      : 11%;
+	background-color: white;
 	position : absolute;    
     width    : 800px;
     left     : 50%;
-    top      : 10%;
     margin-left : -400px; /* half of the width  */
-    margin-top  : 0px; /* half of the height */
     background: #FFFFFF; /* Set content background to white */
     padding: 0px 10px 5px 10px; /* Padding to make some more space for our text */
     border: 1px solid #DFDFDF; /* Small border for the finishing touch */
 	border-radius: 8px;
     /* Center our content text */
+}
+
+#list a {
+	text-decoration: none;
+	display: block;
+	color: green;
+	border: 1px solid #00FF00;
+}
+
+#list a h3 {
+    font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
+	font-weight: bold;
+	text-align: left;
+}
+
+#list a:hover { 
+    background-color: #EEEEEE;
 }
