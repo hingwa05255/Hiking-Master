@@ -42,6 +42,10 @@ app.get('/route', function (req, res) {
 	res.render('pages/route')
 });
 
+app.get('/tips', function (req, res) {
+	res.render('pages/tips')
+});
+
 app.get('/welcome', function (req, res) {
 	res.render('pages/welcome')
 });
@@ -99,6 +103,3 @@ app.get('/trail', function(req,res){
 });
 app.post('/register',login.register);
 app.post('/login', login.login);
-
-app.post('/register',login.register);
-app.post('/login',login.login);

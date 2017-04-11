@@ -3,6 +3,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
 	<link href="css/route.css" type="text/css" rel="stylesheet" />
+	<link href="css/gallery.css" type="text/css" rel="stylesheet" />
 	<title>Trail</title>
 	<script type="text/javascript" src="scripts/querystring.js" ></script>
 	
@@ -17,48 +18,30 @@
 </head>
 <body>
 	<header><% include ../partials/header1 %></header>
+	
 	<div id="wrap">
 		<h3 id="trailName"></h3>
 		<div id=""></div>
+		
+		<div class="slideshow-container">
+			<div class="mySlides"><img id="img1" style="width:100%"></div>
+			<div class="mySlides"><img id="img2" style="width:100%"></div>
+			<div class="mySlides"><img id="img3" style="width:100%"></div>
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div><br>
+		<div style="text-align:center">
+			<span class="dot" onclick="currentSlide(1)"></span> 
+			<span class="dot" onclick="currentSlide(2)"></span> 
+			<span class="dot" onclick="currentSlide(3)"></span> 
+		</div>
+		<script type="text/javascript" src="scripts/gallery.js" ></script>
+		
 	</div>
+	
 	<div id="list">
-	<h3>Routes<form><input type="text" placeholder="Search..." required><input type="button" value="Search" class="button"></form></h3>
+	<h3>Routes<form name="search" action="http://localhost:3000/search" method="post"><input type="text" placeholder="Search..." required><input type="submit" value="Search" class="button"></form></h3>
 	</div>
-	<script>
-
-	var trail_id = QueryString.id
-	
-	if (trail_id == null) {
-		document.getElementById('list').style.display = "block";
-		loadXMLDoc("trail", function(jsonString) {
-			var json = JSON.parse(jsonString);
-			var list = document.getElementById('list');
-			for (var i = 0; i < json.length; i++) {
-				var a = document.createElement('a');
-				var br = document.createElement("br");
-				var h3 = document.createElement("h3");
-				var img = document.createElement("img");
-				img.src="images/" + json[i].trail_photo1;
-				img.height="180";
-				img.width="320";
-				a.appendChild(img);
-				h3.appendChild(document.createTextNode(json[i].trail_name));
-				a.appendChild(h3);
-				a.appendChild(document.createTextNode('District: ' + json[i].trail_district));
-				a.setAttribute('href', 'route?id=' + json[i].trail_id);
-				list.appendChild(a);
-			}
-		});
-	} else {
-		var url = "trail?id=" + trail_id;
-		document.getElementById('wrap').style.display = "block";
-		loadXMLDoc(url, function(jsonString) {
-			var json = JSON.parse(jsonString);
-			var trailNameDiv = document.getElementById('trailName');
-			trailNameDiv.appendChild(document.createTextNode(json.trail_name));
-		});
-	}
-	
-	</script>
+	<script type="text/javascript" src="scripts/trail.js" ></script>
 </body>
 </html>
