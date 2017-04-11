@@ -1,53 +1,233 @@
-
-*{
-    padding: 0; /* Reset all padding to 0 */
-    margin: 0; /* Reset all margin to 0 */
+/* Include the padding and border in an element's total width and height */
+* {
+    box-sizing: border-box;
 }
 
-body{
-    background-image: url("../images/background.png");
-    font: 16px "Arial";  /* Set global font size & family */
-    color: #464646; /* Set global text color */
+/* Remove margins and padding from the list */
+.list {
+    margin: 0;
+    padding: 0;
 }
 
-/* Wrap */
-#wrap{
-	position : absolute;
-    width    : 400px;
-    left     : 50%;
-    top      : 25%;
-    margin-left : -200px; /* half of the width  */
-    margin-top  : 0px; /* half of the height */
-    background: teal; /* Set content background to white */
-    padding: 5px 10px 5px 10px; /* Padding to make some more space for our text */
-    border: 1px solid #DFDFDF; /* Small border for the finishing touch */
-	border-radius: 8px;
-    /* Center our content text */
+/* Style the list items */
+.list li {
+    cursor: pointer;
+    position: relative;
+    padding: 30px 30px 30px 30px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+    text-align: center;
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-#wrap h3{
-    font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
-	font-weight: bold;
-	text-align: center;
+/* Set all odd list items to a different color (zebra-stripes) */
+.list li:nth-child(odd) {
+    background: #f9f9f9;
 }
 
-#list h3{
-    font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
-	font-weight: bold;
-	text-align: center;
-	background-color: white;
+/* Darker background-color on hover */
+.list li:hover {
+    background: #ddd;
 }
 
-#list{
-	position : absolute;
-    width    : 800px;
-    left     : 50%;
-    top      : 10%;
-    margin-left : -400px; /* half of the width  */
-    margin-top  : 0px; /* half of the height */
-    background: #FFFFFF; /* Set content background to white */
-    padding: 0px 10px 5px 10px; /* Padding to make some more space for our text */
-    border: 1px solid #DFDFDF; /* Small border for the finishing touch */
-	border-radius: 8px;
-    /* Center our content text */
+.list li:active {
+    background: #8d8d8d;
+}
+
+.whole{
+  width:100%;
+  height:100%;
+}
+
+.header{
+  top: 0;
+  height: 7%;
+  width: 100%;
+}
+
+.nonheader{
+  top: 7%;
+  height: 93%;
+  width: 100%;
+  border-style: solid;
+}
+
+.left{
+  display: inline-block;
+  border-style: solid;
+  border-color: teal;
+  height: 100%;
+  width: 35%;
+}
+
+.searchPost{
+  border-style: solid;
+  background-color: yellow;
+  border-color: pink;
+  height: 30%;
+  weight: 100%;
+  text-align: center;
+}
+
+.post{
+  height: 70%;
+  bottom: 0;
+  width: 100%;
+  overflow: scroll;
+}
+
+.right{
+  display: inline-block;
+  float: right;
+  border-style: solid;
+  border-color: red;
+  height: 100%;
+  width: 65%;
+  background-color: blue;
+  overflow: auto;
+}
+
+.addBut{
+  text-align: center;
+  padding: 20px;
+  float: center;
+  border-color: violet;
+  background-color: violet;
+  transition: 0.2s;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.addBut:hover{
+  cursor: pointer;
+  background: pink;
+}
+
+.delBut{
+  text-align: center;
+  padding: 20px;
+  float: center;
+  border-color: brown;
+  background-color: brown;
+  transition: 0.2s;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.delBut:hover{
+  cursor: pointer;
+  background: pink;
+}
+
+#scroll_one::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#scroll_one::-webkit-scrollbar{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#scroll_one::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+.ActivityInfo{
+  border-style: solid;
+  background-color: lightblue;
+  border-color: black;
+  height: 40%;
+  weight: 100%;
+  text-align: center;
+  font-size: 30;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.infoBlock{
+  font-size: 20px;
+  border-style: solid;
+  border-color: black;
+}
+
+input {
+	outline: none;
+}
+input[type=search] {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none;
+}
+
+
+input[type=search] {
+	background: #ededed url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+	border: solid 1px #ccc;
+	padding: 9px 10px 9px 32px;
+	width: 55px;
+
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;
+}
+input[type=search]:focus {
+	width: 130px;
+	background-color: #fff;
+	border-color: #66CC75;
+
+	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+
+
+input:-moz-placeholder {
+	color: #999;
+}
+input::-webkit-input-placeholder {
+	color: #999;
+}
+
+.text {
+  display: inline-block;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: #000;
+  letter-spacing: 1px;
+  font-size: 15px;
+  transition: all .15s ease-in-out;
+  text-shadow: 0 0 0 #fff;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
