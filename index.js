@@ -53,6 +53,10 @@ app.get('/signup', function (req, res) {
 app.get('/login', function (req, res) {
 	res.render('pages/login')
 });
+app.get('/changepassword', function (req, res){
+	res.render('pages/changepassword')
+});
+app.post('/changepassword', login.changepassword);
 
 app.get('/logout', function (req, res) {
 	req.session.destroy(function(err) {
@@ -63,6 +67,8 @@ app.get('/logout', function (req, res) {
 		}
 	});
 });
+
+
 
 app.get('/trail', function(req,res){
 	var trail_id = req.query.id;
@@ -91,6 +97,8 @@ app.get('/trail', function(req,res){
 			});
 	}
 });
+app.post('/register',login.register);
+app.post('/login', login.login);
 
 app.post('/register',login.register);
 app.post('/login',login.login);
