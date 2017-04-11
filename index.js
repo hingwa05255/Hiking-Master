@@ -67,38 +67,24 @@ app.get('/logout', function (req, res) {
 app.get('/trail', function(req,res){
 	var trail_id = req.query.id;
 	console.log(trail_id);
-
-	if (trail_id == null)
-	{
+	if (trail_id == null)	{
 		var sql = 'SELECT * FROM trail;';
-
-		connection.query(sql, null, function(err, rows)
-		{
-			if (!err)
-			{
+		connection.query(sql, null, function(err, rows){
+			if (!err){
 				res.send(rows);
-			}
-			else
-			{
+			}else{
 				console.log(err);
 			}
 		});
 	}
 	else{
 		var sql = 'SELECT * FROM trail WHERE trail_id = ?;';
-
 		var params = [trail_id];
-
-		connection.query(sql, params, function(err, trails)
-		{
-			if (!err && trails.length == 1)
-			{
+		connection.query(sql, params, function(err, trails){
+			if (!err && trails.length == 1){
 				var trail = trails[0];
 				res.send(trail);
-				}
-			
-			else
-			{
+			}else{
 				console.log(err);
 				res.send({'status':'failed'});
 			}
