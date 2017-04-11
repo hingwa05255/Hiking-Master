@@ -80,7 +80,7 @@ exports.login = function(req,res){
 }
 
 exports.changepassword = function(req,res){
-	var member_name = req.body.username;
+	var member_name = req.session.username;
 	var member_oldpassword = req.body.password;
 	var member_newpassword = req.body.newpassword;
 	var sql = 'INSERT INTO member (member_password) VALUES ?;';
