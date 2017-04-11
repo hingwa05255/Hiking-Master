@@ -1,0 +1,28 @@
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
+    <title>Error !</title>
+    <link href="css/message.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <header><% include ../partials/header1 %></header>
+        <div class="body">
+    <div id="wrap">
+        <!-- title and description -->   
+        <h3>Error!</h3>
+        <!-- start error message -->  
+		<%- failed %><br>
+		<% if (code==100){ %>
+			<a href="/signup">Please try again!</a>
+		<% } else if (code==200) { %>
+			<a href="/login">Please try again!</a>
+		<% } else if (code==300) { %>
+			<a href="/changepassword">Please try again!</a>
+		<% }%>
+        <!-- end error message -->
+		</div>
+    <!-- end wrap div -->
+</div>
+</body>
+</html>

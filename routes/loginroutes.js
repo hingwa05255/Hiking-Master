@@ -31,13 +31,33 @@ exports.register = function(req,res){
 	var sql = 'INSERT INTO member (member_name, member_password, member_email, member_active, member_dateofbirth, member_gender) VALUES (?, ?, ?, ?, ?, ?);';
 	var parameters = [member_name, member_password, member_email, member_active, member_dateofbirth, member_gender];
 	
-	connection.query(sql, parameters, function(err, rows) {
+	connection.query('SELECT * FROM member WHERE member_name = ?',[member_name], function(err, results) {
 		if (err) {
-			console.log("error ocurred",err);
-			res.send({"code":400,"failed":"error ocurred"})
+			res.render('pages/error',{"code":100,"failed":"Error Ocurred!"});
 		}else{
-			console.log('The solution is: success');
-			res.render('pages/success');
+			if(results.length > 0){
+			res.render('pages/error',{"code":100,"failed":"The username has been used!"});
+			return;
+			} else {
+				connection.query('SELECT * FROM member WHERE member_email = ?',[member_email], function(err, results1) {
+					if (err) {
+						res.render('pages/error',{"code":100,"failed":"Error Ocurred!"});
+					}else{
+						if(results1.length > 0){
+						res.render('pages/error',{"code":100,"failed":"The email has been used!"});
+						return;
+						} else {
+							connection.query(sql, parameters, function(err, rows) {
+								if (err) {
+									res.render('pages/error',{"code":100,"failed":"Error Ocurred!"});
+								}else{
+									res.render('pages/success',{"code":100,"success":"You have successfully registered!"});
+								}
+							});
+						}
+					}
+				});
+			}
 		}
 	});
 }
@@ -48,32 +68,23 @@ exports.login = function(req,res){
 	var member_password = req.body.password;
 	connection.query('SELECT * FROM member WHERE member_name = ?',[member_name], function (err, results, fields) {
 	if (err) {
-		res.send({
-		"code":400,
-		"failed":"error ocurred"
-		})
+		res.render('pages/error',{"code":200,"failed":"Error Ocurred!"});
 	}else{
     // console.log('The solution is: ', results);
 		if(results.length > 0){
 			bcrypt.compare(member_password, results[0].member_password, function(err, doesMatch){
 			if(doesMatch){
 				req.session.username = member_name;
-				res.render('pages/welcome');
+				res.render('pages/success',{"code":200,"success":"You have successfully logged in!"});
 			
 		}
 		else{
-			res.send({
-				"code":204,
-				"success":"Email and password does not match"
-            });
+			res.render('pages/error',{"code":200,"failed":"Your username or password is incorrect!"});
 		}
 	});
     }
     else{
-		res.send({
-			"code":204,
-			"success":"Email does not exits"
-		});
+		res.render('pages/error',{"code":200,"failed":"Your username or password is incorrect!"});
     }
   }
   });
@@ -82,49 +93,33 @@ exports.login = function(req,res){
 exports.changepassword = function(req,res){
 	var member_name = req.session.username;
 	var member_oldpassword = req.body.password;
-	var member_newpassword = req.body.newpassword;
-	var sql = 'INSERT INTO member (member_password) VALUES ?;';
-
+	var member_newpassword = bcrypt.hashSync(req.body.newpassword, 10);
+	
 	connection.query('SELECT * FROM member WHERE member_name = ?', [member_name], function(err, results, fields) {
-	if (err) {
-		res.send({
-		"code":400,
-		"failed":"error ocurred"
-		})
-	}else{
-		if(results.length > 0){
-			bcrypt.compare(member_password, results[0].member_password, function(err, doesMatch){
-			if(doesMatch){
-				connection.query(sql, [member_newpassword],function(err,rows){
-					if (err) {
-						console.log("error ocurred",err);
-							res.send({"code":400,"failed":"error ocurred"})
-					}
-					else{
-							res.send({
-									"code":200,
-									"success":"change sucessfull"
-          					  })
+		if (err) {
+			res.render('pages/error',{"code":300,"failed":"Error Ocurred!"});
+		}else{
+			if(results.length > 0){
+				bcrypt.compare(member_oldpassword, results[0].member_password, function(err, doesMatch){
+					if(doesMatch){
+						var sql = 'UPDATE member SET member_password = ? WHERE member_name = ?;';
+						connection.query(sql, [member_newpassword, member_name],function(err,rows){
+							if (err) {
+								res.render('pages/error',{"code":300,"failed":"Error Ocurred!"});
+							}
+							else{
+								res.render('pages/success',{"code":300,"success":"You have successfully changed your password!"});
+							}
+						});
+					}else{
+						res.render('pages/error',{"code":300,"failed":"Your original password is incorrect!"});
 					}
 				});
-			
-		}
-		else{
-			res.send({
-				"code":204,
-				"success":"Email and password does not match"
-            });
+			}else{
+				res.render('pages/error',{"code":300,"failed":"Username does not exits"});
+			}
 		}
 	});
-    }
-    else{
-		res.send({
-			"code":204,
-			"success":"Email does not exits"
-		});
-    }
-  }
-  });
 }
 
 
