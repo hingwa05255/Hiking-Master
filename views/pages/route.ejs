@@ -3,30 +3,40 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
 	<link href="css/route.css" type="text/css" rel="stylesheet" />
+	<link href="css/gallery.css" type="text/css" rel="stylesheet" />
 	<title>Trail</title>
 	<script type="text/javascript" src="scripts/querystring.js" ></script>
 
 	<style>
 		#wrap, #list { display: None; }
+<<<<<<< HEAD
 
 		#list { margin-top: 100px; background-color: blue; }
 
+=======
+	
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
 		#trailName {
 			text-align: center;
 			font-size: 20px;
 		}
+<<<<<<< HEAD
 
 		#list a {
 			display: block;
 			color: red;
 		}
+=======
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
 	</style>
 </head>
 <body>
 	<header><% include ../partials/header1 %></header>
+	
 	<div id="wrap">
 		<h3 id="trailName"></h3>
 		<div id=""></div>
+<<<<<<< HEAD
 	</div>
 	<div id="list">
 	<h3>Routes</h3>
@@ -70,5 +80,28 @@
 
 
 	</script>
+=======
+		
+		<div class="slideshow-container">
+			<div class="mySlides"><img id="img1" style="width:100%"></div>
+			<div class="mySlides"><img id="img2" style="width:100%"></div>
+			<div class="mySlides"><img id="img3" style="width:100%"></div>
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div><br>
+		<div style="text-align:center">
+			<span class="dot" onclick="currentSlide(1)"></span> 
+			<span class="dot" onclick="currentSlide(2)"></span> 
+			<span class="dot" onclick="currentSlide(3)"></span> 
+		</div>
+		<script type="text/javascript" src="scripts/gallery.js" ></script>
+		
+	</div>
+	
+	<div id="list">
+	<h3>Routes<form name="search" action="http://localhost:3000/search" method="post"><input type="text" placeholder="Search..." required><input type="submit" value="Search" class="button"></form></h3>
+	</div>
+	<script type="text/javascript" src="scripts/trail.js" ></script>
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
 </body>
 </html>

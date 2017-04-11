@@ -4,18 +4,23 @@
 }
 
 body{
-    background-image: url("../images/background.png");
+    background-color: #00BB00 !important; 
     font: 16px "Arial";  /* Set global font size & family */
     color: #464646; /* Set global text color */
 }
 
 /* Wrap */
 #wrap{
+<<<<<<< HEAD
 	position : absolute;
     width    : 400px;
+=======
+	position : absolute;    
+    width    : 800px;
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
     left     : 50%;
-    top      : 25%;
-    margin-left : -200px; /* half of the width  */
+    top      : 11%;
+    margin-left : -400px; /* half of the width  */
     margin-top  : 0px; /* half of the height */
     background: #FFFFFF; /* Set content background to white */
     padding: 5px 10px 5px 10px; /* Padding to make some more space for our text */
@@ -34,19 +39,67 @@ body{
     font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
 	font-weight: bold;
 	text-align: center;
-	background-color: white;
 }
 
 #list{
+<<<<<<< HEAD
 	position : absolute;
+=======
+	top      : 11%;
+	background-color: white;
+	position : absolute;    
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
     width    : 800px;
     left     : 50%;
-    top      : 10%;
     margin-left : -400px; /* half of the width  */
-    margin-top  : 0px; /* half of the height */
+	margin-bottom : 2%; /* half of the width  */
     background: #FFFFFF; /* Set content background to white */
     padding: 0px 10px 5px 10px; /* Padding to make some more space for our text */
-    border: 1px solid #DFDFDF; /* Small border for the finishing touch */
+    border: 3px solid #00CC00; /* Small border for the finishing touch */
 	border-radius: 8px;
     /* Center our content text */
 }
+<<<<<<< HEAD
+=======
+
+#list a {
+	padding: 0px 0px 5px 10px; /* Padding to make some more space for our text */
+	text-decoration: none;
+	height: 181px;
+	display: block;
+	color: green;
+	border: 1px solid #DDDDDD;
+}
+
+#list a h3 {
+    font: 20px Raleway; /* Set font for our heading 2 that will be displayed in our wrap */
+	font-weight: bold;
+	text-align: left;
+}
+
+#list form {
+	text-decoration: none;
+	font-family: Arial;
+	font-weight: normal;
+    float: right;
+}
+
+#list a img {
+	float: right;
+}
+
+#list a:hover { 
+    background-color: #EEEEEE;
+}
+
+.button {
+				font-family: Arial;
+                border:2px solid #00cc00;
+                background-color:#00cc00;
+                color:#fafafa;
+}
+.button:hover  {
+                background-color:#fafafa;
+                color:#00cc00;
+}
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b

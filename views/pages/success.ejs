@@ -2,8 +2,8 @@
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
-    <title>Registration success</title>
-    <link href="css/success.css" type="text/css" rel="stylesheet" />
+    <title>Success</title>
+    <link href="css/message.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
     <!-- start header div -->
@@ -14,12 +14,15 @@
     <div id="wrap">
 	 
         <!-- title and description -->   
-        <h3>Sign Up</h3>
-         
-        <!-- start sign up form -->  
-        Your registration has been completed. <br>
-		<a href="/login">You can now login to our website!</a>
-        <!-- end sign up form -->
+        <h3>Success!</h3>
+         <%- success %><br>
+		<% if (code==100){ %>
+			<a href="/login">Try log in immediately!</a>
+		<% } else if (code==200) { %>
+			<a href="/">Click here to continue!</a>
+		<% } else if (code==300) { %>
+			<a href="/">Click here to continue!</a>
+		<% }%>
          
     </div>
     <!-- end wrap div -->

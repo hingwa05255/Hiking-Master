@@ -42,6 +42,10 @@ app.get('/route', function (req, res) {
 	res.render('pages/route')
 });
 
+app.get('/tips', function (req, res) {
+	res.render('pages/tips')
+});
+
 app.get('/welcome', function (req, res) {
 	res.render('pages/welcome')
 });
@@ -53,6 +57,10 @@ app.get('/signup', function (req, res) {
 app.get('/login', function (req, res) {
 	res.render('pages/login')
 });
+app.get('/changepassword', function (req, res){
+	res.render('pages/changepassword')
+});
+app.post('/changepassword', login.changepassword);
 
 app.get('/logout', function (req, res) {
 	req.session.destroy(function(err) {
@@ -64,47 +72,71 @@ app.get('/logout', function (req, res) {
 	});
 });
 
+app.get('/search', function(req,res){
+	var trail_name = req.query.name;
+	console.log(trail_name);
+	if(trail_name == null) {
+		var sql = 'SELECT * FROM trail;';
+		connection.query(sql,null, function(err, rows){
+			if(!err){
+				res.send(rows);
+			}else{
+				console.log(err);
+			}
+		});
+	}
+	else{
+		var sql = 'SELECT * FROM trail_name WHERE trail_name LIKE %?%;';
+		var params = [trail_name];
+		connection.query(sql, params,function(err, trails){
+			if(!err && trails.length == 1){
+				var trail = trails[0];
+				res.send(trail);
+
+			}else{
+				console.log(err);
+				res.send({'status':'failed'});
+			}
+		});
+
+	}
+});
+
 app.get('/trail', function(req,res){
 	var trail_id = req.query.id;
 	console.log(trail_id);
-
-	if (trail_id == null)
-	{
+	if (trail_id == null)	{
 		var sql = 'SELECT * FROM trail;';
-
-		connection.query(sql, null, function(err, rows)
-		{
-			if (!err)
-			{
+		connection.query(sql, null, function(err, rows){
+			if (!err){
 				res.send(rows);
-			}
-			else
-			{
+			}else{
 				console.log(err);
 			}
 		});
 	}
 	else{
 		var sql = 'SELECT * FROM trail WHERE trail_id = ?;';
-
 		var params = [trail_id];
-
-		connection.query(sql, params, function(err, trails)
-		{
-			if (!err && trails.length == 1)
-			{
+		connection.query(sql, params, function(err, trails){
+			if (!err && trails.length == 1){
 				var trail = trails[0];
 				res.send(trail);
+<<<<<<< HEAD
 				}
 
 			else
 			{
+=======
+			}else{
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
 				console.log(err);
 				res.send({'status':'failed'});
 			}
 			});
 	}
 });
+<<<<<<< HEAD
 
 app.get('/group', function (req, res) {
 	res.render('pages/group')
@@ -112,3 +144,7 @@ app.get('/group', function (req, res) {
 
 app.post('/register',login.register);
 app.post('/login',login.login);
+=======
+app.post('/register',login.register);
+app.post('/login', login.login);
+>>>>>>> 4866d214c42e73d236345ec74fddbffc0ce97e5b
