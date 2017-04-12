@@ -15,22 +15,16 @@
     <!-- start wrap div -->
 		<div class="wrap">
         <!-- title and description -->
-        <h3>CREATE NEW ACTIVITY NOW!</h3>
+        <h3>CHANGE ACTIVITY NOW!</h3>
         <!-- start sign up form -->
-        <form name="signup" action="http://localhost:3000/addgroup" method="post">
+        <form name="signup" action="http://localhost:3000/changegroup?id=<%= data.activity_id %>" method="post">
             <label for="topic">Activity Title:</label>
-            <input type="text" name="topic" value="" required/>
+            <input type="text" name="topic" value="<%= data.activity_topic %>" required/>
             <label for="date">Date:</label>
-            <input type="date" name="date" value="" required/>
-			<label for="route">Route:</label>
-			<% for(var i=0; i < data.length; i++) { %>
-				<label for="<%= data[i].trail_id %>"><input type="radio" name="route" value="<%= data[i].trail_id %>" id="<%= data[i].trail_id %>" required/><%= data[i].trail_name %></input></label>
-			<% } %>
-			<br>
+            <input type="date" name="date" value="<%= data.formatted_date %>" required/>
             <label for="description">Description:</label>
-            <textarea type="text" name="description" value="" placeholder="Describe your activity..."></textarea>
-			<font color="red">Wanna search for other activity? Click <a href="/group">here</a></font><br><br>
-            <input type="submit" name="sent" class="submit_button" value="CREATE" />
+            <textarea type="text" name="description" value=""><%= data.activity_content %></textarea>
+            <input type="submit" name="sent" class="submit_button" value="CHANGE" />
         </form>
         <!-- end sign up form -->
 		</div></div>

@@ -123,9 +123,55 @@ exports.changepassword = function(req,res){
 	});
 }
 
+exports.searchRoute = function(req,res){
+	var trailname = req.query.search;
+	if(trailname == null) {
+		var sql = 'SELECT * FROM trail;';
+		connection.query(sql,null, function(err, rows){
+			if(!err){
+				console.log("i shouldn't be here");
+				res.send(rows);
+			}else{
+				console.log(err);
+			}
+		});
+	}
+	else{
+ 		var sql2 = 'SELECT * FROM trail WHERE trail_name Like ?;';
+ 		var params = ["%" + trailname + "%"];
 
+		connection.query(sql2,params,function(err, trails){
+			//console.log(trails);
+			if(!err ){
+				res.send(trails);
+			}else{
+				res.send({'status':'failed.............'});
+			}
+		});
 
+	}
+}
 
+exports.quitGroup = function(req,res){
+	var act_id = req.body.activity_id;
+	var member_id = req.session.userid;
+
+	var sql = 'DELETE FROM participate WHERE member_id = ? AND activity_id = ?;';
+	var sql2 = 'SELECT activity_creator_id FROM activity WHERE ? = activity_creator_id;';
+	var parameters = [member_id,act_id];
+
+	connection.query(sql,parameters, function(err,results){
+		if(err){
+			res.render('pages/error',{"code":100,"failed":"The userid not found !"});
+			return;
+		}
+		else{
+			res.render('pages/success',{"code":500,"success":"You have successfully quit the group!"});
+			return;
+		}
+
+	})
+}
 
 
 

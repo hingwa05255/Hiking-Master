@@ -4,13 +4,29 @@
 	
 function showActivity(activity_id) {
     var ul = document.getElementById("activityRegion");
+	var btndiv = document.getElementById("buttonRegion");
+	var commentRegion = document.getElementById("commentRegion");
+	
+	ul.style.display = "block";
+	btndiv.style.display = "block";
+	commentRegion.style.display = "block";
+
     if(showingActivity===1){
       while (ul.hasChildNodes()) {
         ul.removeChild(ul.lastChild);
       }
     }
-    else{
-      removeDummy();
+    
+    if(showingActivity===1){
+      while (commentRegion.hasChildNodes()) {
+        commentRegion.removeChild(commentRegion.lastChild);
+      }
+    }
+	
+	if(showingActivity===1){
+      while (btndiv.hasChildNodes()) {
+        btndiv.removeChild(btndiv.lastChild);
+      }
     }
 	
 	var url = "activity?id=" + activity_id;
@@ -19,7 +35,6 @@ function showActivity(activity_id) {
 		showingActivity = 1;
 		
 		var table = document.createElement("table");
-		table.setAttribute("border", "5px");
 		table.setAttribute("width", "100%");
 		table.setAttribute("height", "100%");
 		var col1 = document.createElement("col");
@@ -75,8 +90,7 @@ function showActivity(activity_id) {
 		
 		ul.appendChild(table);
 		
-		var btndiv = document.createElement("div");
-		btndiv.setAttribute('id','btndiv');
+		var btndiv = document.getElementById("buttonRegion");
 		var route = document.createElement("a");
 		route.setAttribute('href','route?id=' + json.activity_trail_id);
 		route.setAttribute('target','_blank');
@@ -93,16 +107,50 @@ function showActivity(activity_id) {
 		joinbtn.setAttribute("type", "submit");
 		joinbtn.setAttribute('id','btn');
 		joinbtn.setAttribute('value','Join');
+		joinbtn.setAttribute('style','display: block;');
 		join.appendChild(joinbtn);
+		//join.appendChild(route);
 		btndiv.appendChild(join);
-		
-		ul.appendChild(btndiv);
-		
-		
-		
-		
-		
 	});
+	
+	//Show comment
+	var url = "comment?id=" + activity_id;
+	
+	loadXMLDoc(url, function(jsonString) {
+		var json = JSON.parse(jsonString);
+		var head = document.createElement("h3");
+		head.appendChild(document.createTextNode('Comments'));
+		commentRegion.appendChild(head);
+		for(var i=0; i<json.length; i++){
+			var comment = document.createElement("div");
+			comment.setAttribute('class','comment')
+			comment.appendChild(document.createTextNode(json[i].formatted_date));
+			comment.appendChild(document.createElement("br"));
+			comment.appendChild(document.createTextNode(json[i].member_name));
+			comment.appendChild(document.createElement("br"));
+			comment.appendChild(document.createTextNode(json[i].comment_content));
+			commentRegion.appendChild(comment);
+		}
+		// show textfield for inputting comment
+		var commentform = document.createElement("form");
+		commentform.action = "/postcomment";
+		commentform.method = "post";
+		content = document.createElement("textarea");
+		content.style.width = "85%";
+		content.style.height = "100px";
+		content.value = "Your comments...";
+		content.name = "content";
+		commentform.appendChild(content);
+		id = document.createElement("input");
+		id.value = activity_id;
+		id.name = "id";
+		commentform.appendChild(id);
+		submit = document.createElement("button");
+		submit.appendChild(document.createTextNode("submit"));
+		commentform.appendChild(submit);
+		commentRegion.appendChild(commentform);
+	});	
+	
   }
 
   function removeDummy() {

@@ -6,7 +6,6 @@
 	<link href="css/gallery.css" type="text/css" rel="stylesheet" />
 	<title>Trail</title>
 	<script type="text/javascript" src="scripts/querystring.js" ></script>
-	
 	<style>
 		#detail, #list { display: None; }
 	
@@ -69,7 +68,8 @@
 	</div>
 	
 	<div id="list">
-	<h3>Routes<form name="search" action="http://localhost:3000/search" method="post"><input type="text" placeholder="Search..." required><input type="submit" value="Search" class="button"></form></h3>
+	<h3>Routes<form name="searchform" action="/searchtrail" method="get"><input type="text" placeholder="Search..." name="search" id="search" required>
+	<input type="submit" value="Search" class="button"></form></h3>
 	</div>
 	<script type="text/javascript" src="scripts/trail.js" ></script>
 </body>

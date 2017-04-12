@@ -1,0 +1,21 @@
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
+	<link href="css/route.css" type="text/css" rel="stylesheet" />
+	<title>Trail</title>
+	<script type="text/javascript" src="scripts/querystring.js" ></script>
+	
+	<style>
+		#list { display: None; }
+	</style>
+</head>
+<body>
+	<header><% include ../partials/header1 %></header>
+	<div id="list">
+	<h3>Routes<form name="searchform" action="/searchtrail" method="get"><input type="text" placeholder="Search..." name="search" id="search" required>
+	<input type="submit" value="Search" class="button"></form></h3>
+	</div>
+	<script type="text/javascript" src="scripts/searchtrail.js" ></script>
+</body>
+</html>

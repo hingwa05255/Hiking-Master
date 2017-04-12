@@ -3,9 +3,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
 	<link href="css/group.css" type="text/css" rel="stylesheet" />
-	<script src="alert/dist/alertify.min.js"></script>
-	<link rel="stylesheet" href="alert/dist/alertify.core.css" />
-	<link rel="stylesheet" href="alert/dist/alertify.default.css" id="toggleCSS" />
+
 	<title>Groups</title>
 	<script type="text/javascript" src="scripts/querystring.js" ></script>
 	
@@ -34,11 +32,14 @@
 		color : white;
 		text-align : center;
 	}
+	
+	.ActivityInfo{display : none;}
+	.ButtonInfo{display : none;}
+	.CommentInfo{display : none;}
 	</style>
 	
 </head>
 <body>
-
   <div class="whole">
     <div class="header">
       <header><% include ../partials/header1 %></header>
@@ -57,11 +58,13 @@
         </div>
       </div>
       <div class="right">
-        <div class="ActivityInfo" id="activityRegion"><h3 id="noAct">Activity not yet selected</h3></div>
-        
+        <div class="ActivityInfo" id="activityRegion"></div>
+		<div class="ButtonInfo" id="buttonRegion"></div>
+        <div class="CommentInfo" id="commentRegion"></div>
+		<script type="text/javascript" src="scripts/activity.js" ></script>
       </div>
     </div>
-	<script type="text/javascript" src="scripts/activity.js" ></script>
+	
   </div>
 </body>
 </html>
