@@ -209,7 +209,9 @@ app.get('/text', function(req,res){
 });
 
 app.post('/register',login.register);
+app.post('/quitted',login.quitGroup);
 app.post('/login', login.login);
+
 app.post('/join', function(req,res){
 	var post_id = req.query.aid;
 	var member_id = req.session.userid;
@@ -242,7 +244,8 @@ app.post('/join', function(req,res){
 
 app.get('/mygroups', function(req,res){
 	var member_id = req.session.userid;
-	var sql = 'SELECT DISTINCT * FROM participate WHERE member_id = ?;';
+	var sql = 'SELECT DISTINCT *, activity_topic, activity_creator_id FROM participate, activity WHERE member_id = ? AND participate.activity_id = activity.activity_id;';
+
 	connection.query(sql,[member_id], function(err, results){
 		if(err){
 			res.send({
@@ -251,13 +254,21 @@ app.get('/mygroups', function(req,res){
 			})
 		}else{
 			if(results.length > 0) {
-				res.send(results);
+				// res.send(results);
+				res.render('pages/mygroups',{data:results});
 			} else {
 				res.render('pages/error',{"code":500,"failed":"You haven't joined any group yet."});
 			}
 		}
 	});
 });
+
+app.post('/quitted', function(req,res){
+
+
+
+
+})
 
 
 
