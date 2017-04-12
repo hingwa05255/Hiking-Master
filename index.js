@@ -34,8 +34,25 @@ app.get('/success', function (req, res) {
 	res.render('pages/success')
 });
 
+app.get('/addgroup', function (req, res) {
+	var sql = 'SELECT * FROM trail;';
+	connection.query(sql, [], function(err, results){
+		if(err) {
+			console.log(err);
+		} else {
+			res.render('pages/addgroup', {data:results});
+		}
+	});
+});
+
 app.get('/', function (req, res) {
-	res.render('pages/default')
+	if(req.session.username != null){
+		res.render('pages/hello');
+	
+	}
+	else{
+		res.render('pages/default');
+	}
 });
 
 app.get('/route', function (req, res) {
@@ -61,7 +78,7 @@ app.get('/group', function (req, res) {
 app.get('/activity', function(req,res){
 	var activity_id = req.query.id;
 	if (activity_id == null)	{
-		var sql = 'SELECT * FROM activity;';
+		var sql = 'SELECT *, DATE_FORMAT(activity_date, "%d/%m/%Y") AS formatted_date FROM activity;';
 		connection.query(sql, null, function(err, rows){
 			if (!err){
 				res.send(rows);

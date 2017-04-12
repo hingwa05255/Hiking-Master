@@ -111,24 +111,19 @@ function showActivity(activity_id) {
     return false;
   }
 
+var activity_id = QueryString.id;
 
-
-
-
-
-
-
-	var activity_id = QueryString.id;
-
-	if (activity_id == null) {
-		loadXMLDoc("activity", function(jsonString) {
-			var json = JSON.parse(jsonString);
-			var ul = document.getElementById("postList");
-			for (var i = 0; i < json.length; i++) {
-				var li = document.createElement("li");
-				li.appendChild(document.createTextNode("Activity No: " + json[i].activity_id));
-				li.setAttribute("onclick", "showActivity("+json[i].activity_id+")");
-				ul.appendChild(li);
-			}
-		});
-	}
+if (activity_id == null) {
+	loadXMLDoc("activity", function(jsonString) {
+		var json = JSON.parse(jsonString);
+		var ul = document.getElementById("postList");
+		for (var i = 0; i < json.length; i++) {
+			var li = document.createElement("li");
+			li.appendChild(document.createTextNode(json[i].activity_topic));
+			li.appendChild(document.createElement("br"));
+			li.appendChild(document.createTextNode("Date: " + json[i].formatted_date));
+			li.setAttribute("onclick", "showActivity("+json[i].activity_id+")");
+			ul.appendChild(li);
+		}
+	});
+}

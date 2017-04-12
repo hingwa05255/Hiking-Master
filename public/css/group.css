@@ -63,23 +63,25 @@
   border-style: solid;
   border-color: teal;
   height: 100%;
-  width: 35%;
+  width: 25%;
 }
 
 .searchPost{
+  padding-top: 1%;
   border-style: solid;
   background-color: yellow;
   border-color: pink;
-  height: 30%;
+  height: 10%;
   weight: 100%;
   text-align: center;
 }
 
 .post{
-  height: 70%;
+  overflow-x:hidden;
+  height: 90%;
   bottom: 0;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .right{
@@ -88,7 +90,7 @@
   background-color: limegreen;
   float: right;
   height: 100%;
-  width: 65%;
+  width: 75%;
   padding-top: 2%;
   padding-left: 2%;
   padding-right: 2%;
@@ -146,23 +148,6 @@
 .delBut:hover{
   cursor: pointer;
   background: pink;
-}
-
-#scroll_one::-webkit-scrollbar-track{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
-}
-
-#scroll_one::-webkit-scrollbar{
-	width: 12px;
-	background-color: #F5F5F5;
-}
-
-#scroll_one::-webkit-scrollbar-thumb{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #555;
 }
 
 .ActivityInfo{
