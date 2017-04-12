@@ -3,7 +3,11 @@
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
+<<<<<<< HEAD
     <title>My Groups</title>
+=======
+    <title>Sign up</title>
+>>>>>>> 4ef1f238bbca7d068e16a4a4eb493f068af91ba4
     <link href="css/signup.css" type="text/css" rel="stylesheet" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -31,7 +35,11 @@
 			<% for(var i=0; i < data.length; i++) { %>
 				<label for="<%= data[i].activity_id %>"><input type="radio" name="activity_id" value="<%= data[i].activity_id %>" id="<%= data[i].activity_id %>" required>  <%= data[i].activity_id %> 
 					<%= data[i].activity_topic %></input></label>
+<<<<<<< HEAD
 				<label for="<%= data[i].activity_creator_id %>"<input type="radio" name="activity_creator_id" value="<% data[i].activity_creator_id %>" id="<%= data[i].activity_creator_id %>" required></input></label>
+=======
+				<lab for="<%= data[i].activity_creator_id %>"<input type="radio" name="activity_creator_id" value="<% data[i].activity_creator_id %>" onclick="this.style.display='none'"id="<%= data[i].activity_creator_id %>" required></input></label>
+>>>>>>> 4ef1f238bbca7d068e16a4a4eb493f068af91ba4
 				<!-- <label for="<%= data[i].activity_id %>"><input type="submit" name="activity_id" value="<%= data[i].activity_id %>" id="<%= data[i].activity_id %>" required/></input></label> -->
 			<% } %>
 			<br>

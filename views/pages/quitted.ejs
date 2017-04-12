@@ -1,0 +1,30 @@
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="SHORTCUT ICON" type="image/x-icon" href="images/favicon-32x32.ico" />
+    <title>Success</title>
+    <link href="css/message.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <!-- start header div -->
+	<header><% include ../partials/header1 %></header>
+    <!-- end header div -->  
+     
+    <!-- start wrap div -->  
+    <div id="wrap">
+	 
+        <!-- title and description -->   
+        <h3>Success!</h3>
+         <%- success %><br>
+		<% if (code==100){ %>
+			<a href="/login">Try log in immediately!</a>
+		<% } else if (code==200) { %>
+			<a href="/">Click here to go back to mygroup</a>
+		<% } else if (code==300) { %>
+			<a href="/">Click here to go back to mygroup</a>
+		<% }%>
+         
+    </div>
+    <!-- end wrap div -->
+</body>
+</html>

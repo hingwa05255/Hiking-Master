@@ -20,6 +20,30 @@ app.use(session({secret: 'ssshhhhh',
     saveUninitialized: true
 }));
 
+exports.quitGroup = function(req,res){
+	var act_id = req.body.activity_id;
+	var member_id = req.session.userid;
+
+
+
+	var sql = 'DELETE FROM participate WHERE member_id = ? AND activity_id = ?;';
+	var parameters = [member_id,act_id];
+
+
+
+	connection.query(sql,parameters, function(err,results){
+		if(err){
+			res.render('pages/error',{"code":100,"failed":"The userid not found !"});
+			return;
+		}
+		else{
+			res.render('pages/success',{"code":300,"success":"You have left the group!"});
+			return;
+		}
+
+	});
+}
+
 exports.register = function(req,res){
 	var member_name = req.body.username;
 	var member_gender = req.body.gender;
