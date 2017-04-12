@@ -115,12 +115,12 @@ function showActivity(activity_id) {
 	
 	//Show comment
 	var url = "comment?id=" + activity_id;
-	
+	var head = document.createElement("h3");
+	head.appendChild(document.createTextNode('Comments'));
+	commentRegion.appendChild(head);
 	loadXMLDoc(url, function(jsonString) {
 		var json = JSON.parse(jsonString);
-		var head = document.createElement("h3");
-		head.appendChild(document.createTextNode('Comments'));
-		commentRegion.appendChild(head);
+
 		for(var i=0; i<json.length; i++){
 			var comment = document.createElement("div");
 			comment.setAttribute('class','comment')
@@ -131,17 +131,20 @@ function showActivity(activity_id) {
 			comment.appendChild(document.createTextNode(json[i].comment_content));
 			commentRegion.appendChild(comment);
 		}
-		// show textfield for inputting comment
+		
+	});	
+	// show textfield for inputting comment
 		var commentform = document.createElement("form");
 		commentform.action = "/postcomment";
 		commentform.method = "post";
 		content = document.createElement("textarea");
-		content.style.width = "85%";
+		content.style.width = "92%";
 		content.style.height = "100px";
 		content.value = "Your comments...";
 		content.name = "content";
 		commentform.appendChild(content);
 		id = document.createElement("input");
+		id.style.display = "none";
 		id.value = activity_id;
 		id.name = "id";
 		commentform.appendChild(id);
@@ -149,8 +152,6 @@ function showActivity(activity_id) {
 		submit.appendChild(document.createTextNode("submit"));
 		commentform.appendChild(submit);
 		commentRegion.appendChild(commentform);
-	});	
-	
   }
 
   function removeDummy() {
