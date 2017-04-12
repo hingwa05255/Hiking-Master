@@ -180,9 +180,7 @@ app.get('/trail', function(req,res){
 });
 
 app.post('/register',login.register);
-app.post('/quitted',login.quitGroup);
 app.post('/login', login.login);
-
 app.post('/join', function(req,res){
 	var post_id = req.query.aid;
 	var member_id = req.session.userid;
@@ -298,10 +296,6 @@ app.get('/mygroups', function(req,res){
 			})
 		}else{
 			if(results.length > 0) {
-<<<<<<< HEAD
-=======
-				// res.send(results);
->>>>>>> 4ef1f238bbca7d068e16a4a4eb493f068af91ba4
 				res.render('pages/mygroups',{data:results});
 			} else {
 				res.render('pages/error',{"code":500,"failed":"You haven't joined any group yet."});
@@ -310,7 +304,6 @@ app.get('/mygroups', function(req,res){
 	});
 });
 
-<<<<<<< HEAD
 app.post('/postcomment', function(req,res){
 	var content = req.body.content;
 	var activity_id = req.body.id;
@@ -330,16 +323,3 @@ app.post('/postcomment', function(req,res){
 			}
 	});
 });
-=======
-app.post('/quitted', function(req,res){
-
-
-
-
-})
-
-
-
-
-
->>>>>>> 4ef1f238bbca7d068e16a4a4eb493f068af91ba4
