@@ -31,7 +31,6 @@
 			<% for(var i=0; i < data.length; i++) { %>
 				<label for="<%= data[i].activity_id %>"><input type="radio" name="activity_id" value="<%= data[i].activity_id %>" id="<%= data[i].activity_id %>" required>  <%= data[i].activity_id %> 
 					<%= data[i].activity_topic %></input></label>
-				<label for="<%= data[i].activity_creator_id %>"<input type="radio" name="activity_creator_id" value="<% data[i].activity_creator_id %>" id="<%= data[i].activity_creator_id %>" required></input></label>
 				<!-- <label for="<%= data[i].activity_id %>"><input type="submit" name="activity_id" value="<%= data[i].activity_id %>" id="<%= data[i].activity_id %>" required/></input></label> -->
 			<% } %>
 			<br>

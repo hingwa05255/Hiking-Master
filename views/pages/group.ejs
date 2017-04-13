@@ -34,7 +34,7 @@
 	}
 	
 	.ActivityInfo{display : none;}
-	.ButtonInfo{display : none;}
+	.ButtonInfo{display : none; text-align : center;}
 	.CommentInfo{display : none;}
 	</style>
 	
@@ -58,6 +58,7 @@
         </div>
       </div>
       <div class="right">
+		<input type="text" name="username" id="username" style="display: none;" value="<%- username %>" />
         <div class="ActivityInfo" id="activityRegion"></div>
 		<div class="ButtonInfo" id="buttonRegion"></div>
         <div class="CommentInfo" id="commentRegion"></div>

@@ -91,7 +91,7 @@ app.get('/welcome', function (req, res) {
 app.get('/group', function (req, res) {
 	
 	if (req.session.username != null)
-		res.render('pages/group');
+		res.render('pages/group',{"username":req.session.username});
 	else
 		res.redirect('/login');
 });
@@ -319,7 +319,7 @@ app.post('/postcomment', function(req,res){
 				"failed":"error ocurred"
 			})
 		}else{
-				res.render('pages/group');
+				res.render('pages/group',{"username":req.session.username});
 			}
 	});
 });

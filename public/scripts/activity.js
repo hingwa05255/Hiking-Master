@@ -6,6 +6,7 @@ function showActivity(activity_id) {
     var ul = document.getElementById("activityRegion");
 	var btndiv = document.getElementById("buttonRegion");
 	var commentRegion = document.getElementById("commentRegion");
+	var username = document.getElementById("username").value;
 	
 	ul.style.display = "block";
 	btndiv.style.display = "block";
@@ -100,17 +101,28 @@ function showActivity(activity_id) {
 		route.appendChild(routebtn);
 		btndiv.appendChild(route);
 		
-		var join = document.createElement("form");
-		join.setAttribute('action','join?aid=' + json.activity_id);
-		join.setAttribute('method','POST');
-		var joinbtn = document.createElement("input");
-		joinbtn.setAttribute("type", "submit");
-		joinbtn.setAttribute('id','btn');
-		joinbtn.setAttribute('value','Join');
-		joinbtn.setAttribute('style','display: block;');
-		join.appendChild(joinbtn);
-		//join.appendChild(route);
-		btndiv.appendChild(join);
+		if (username == json.member_name){
+			var edit = document.createElement("a");
+			edit.setAttribute('href','changegroup?id=' + json.activity_id);
+			var editbtn = document.createElement("button");
+			editbtn.setAttribute("id","btn");
+			editbtn.appendChild(document.createTextNode("Edit"));
+			edit.appendChild(editbtn);
+			btndiv.appendChild(edit);
+		} else {	
+			var join = document.createElement("form");
+			join.setAttribute('style','display: inline;');
+			join.setAttribute('action','join?aid=' + json.activity_id);
+			join.setAttribute('method','POST');
+			var joinbtn = document.createElement("input");
+			joinbtn.setAttribute("type", "submit");
+			joinbtn.setAttribute('id','btn');
+			joinbtn.setAttribute('value','Join');
+			joinbtn.setAttribute('style','display: inline;');
+			join.appendChild(joinbtn);
+			//join.appendChild(route);
+			btndiv.appendChild(join);
+		}
 	});
 	
 	//Show comment
