@@ -1,6 +1,7 @@
 	var trail_id = QueryString.id;
 
 	if (trail_id == null) {
+		//display the list of all routes if query is not used
 		document.getElementById('list').style.display = "block";
 		loadXMLDoc("trail", function(jsonString) {
 			var json = JSON.parse(jsonString);
@@ -22,6 +23,7 @@
 			}
 		});
 	} else {
+		//display the detail of specified routes if query is used
 		var url = "trail?id=" + trail_id;
 		document.getElementById('detail').style.display = "block";
 		loadXMLDoc(url, function(jsonString) {

@@ -1,3 +1,4 @@
+//import all the required modules
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
@@ -11,8 +12,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
+//listen to port 3000
 app.listen(3000, function() { console.log('App started!'); });
 
+//create session 
 app.use(session({secret: 'ssshhhhh',
     resave: true,
     saveUninitialized: true
@@ -23,6 +26,7 @@ app.use(function(req, res, next){
   next();
 });
 
+//connect to mysql database
 var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
@@ -30,10 +34,12 @@ var connection = mysql.createConnection({
 	database: 'hiking_master'
 });
 
+//show success message
 app.get('/success', function (req, res) {
 	res.render('pages/success')
 });
 
+//load the create group page
 app.get('/addgroup', function (req, res) {
 	var sql = 'SELECT * FROM trail;';
 	connection.query(sql, [], function(err, results){
@@ -45,6 +51,7 @@ app.get('/addgroup', function (req, res) {
 	});
 });
 
+//post request to insert new activity in database
 app.post('/addgroup', function (req, res) {
 	var topic = req.body.topic;
 	var date = req.body.date;
@@ -62,6 +69,7 @@ app.post('/addgroup', function (req, res) {
 	});
 });
 
+//root path handler, check if the user has logged in
 app.get('/', function (req, res) {
 	if(req.session.username != null){
 		res.render('pages/hello');
@@ -72,22 +80,27 @@ app.get('/', function (req, res) {
 	}
 });
 
+//get the search result of routes
 app.get('/searchtrail', function (req, res) {
 	res.render('pages/searchtrail')
 });
 
+//load the route page
 app.get('/route', function (req, res) {
 	res.render('pages/route')
 });
 
+//load the tips page
 app.get('/tips', function (req, res) {
 	res.render('pages/tips')
 });
 
+//load the welcome page after login
 app.get('/welcome', function (req, res) {
 	res.render('pages/welcome')
 });
 
+//load the group page
 app.get('/group', function (req, res) {
 	
 	if (req.session.username != null)
@@ -96,9 +109,11 @@ app.get('/group', function (req, res) {
 		res.redirect('/login');
 });
 
+//perform query to retrieve all activity
 app.get('/activity', function(req,res){
 	var activity_id = req.query.id;
 	if (activity_id == null)	{
+		//retrieve all activity if query is not used
 		var sql = 'SELECT *, DATE_FORMAT(activity_date, "%d/%m/%Y") AS formatted_date FROM activity;';
 		connection.query(sql, null, function(err, rows){
 			if (!err){
@@ -109,6 +124,7 @@ app.get('/activity', function(req,res){
 		});
 	}
 	else{
+		//retrieve the activity specified in the query
 		var sql = 'SELECT activity.*, DATE_FORMAT(activity_date, "%d/%m/%Y") AS formatted_date, member.member_name, trail_name FROM activity, member, trail WHERE trail_id = activity_trail_id AND activity_id = ? AND activity_creator_id = member_id;';
 		var params = [activity_id];
 		connection.query(sql, params, function(err, activities){
@@ -123,23 +139,25 @@ app.get('/activity', function(req,res){
 	}
 });
 
+//load the sign up page
 app.get('/signup', function (req, res) {
 	res.render('pages/signup')
 });
 
+//load the login page
 app.get('/login', function (req, res) {
 	res.render('pages/login')
 });
+
+//load the changepassword page
 app.get('/changepassword', function (req, res){
 	res.render('pages/changepassword')
 });
 
-app.get('/discussion', function (req, res){
-	res.render('pages/discussion')
-});
-
+//call the changepassword method of login module upon post request
 app.post('/changepassword', login.changepassword);
 
+//logout the system by emptying session
 app.get('/logout', function (req, res) {
 	req.session.destroy(function(err) {
 		if(err) {
@@ -150,11 +168,14 @@ app.get('/logout', function (req, res) {
 	});
 });
 
+//call the searchRoute method of login module upon search post request
 app.get('/search',login.searchRoute);
 
+//perform query to retrieve route information
 app.get('/trail', function(req,res){
 	var trail_id = req.query.id;
 	if (trail_id == null)	{
+		//retrieve all routes if query is not used
 		var sql = 'SELECT * FROM trail;';
 		connection.query(sql, null, function(err, rows){
 			if (!err){
@@ -165,6 +186,7 @@ app.get('/trail', function(req,res){
 		});
 	}
 	else{
+		//retrieve specified route
 		var sql = 'SELECT * FROM trail WHERE trail.trail_id = ?;';
 		var params = [trail_id];
 		connection.query(sql, params, function(err, trails){
@@ -179,11 +201,17 @@ app.get('/trail', function(req,res){
 	}
 });
 
+//call the register method of login module
 app.post('/register',login.register);
+
+//call the login method of login module
 app.post('/login', login.login);
+
+//join an activity
 app.post('/join', function(req,res){
 	var post_id = req.query.aid;
 	var member_id = req.session.userid;
+	//check whether the user has joined the activity already
 	connection.query('SELECT * FROM participate WHERE member_id = ? AND activity_id = ?;', [member_id, post_id], function(err, results, fields){
 		if (err) {
 				res.render('pages/error',{
@@ -211,6 +239,7 @@ app.post('/join', function(req,res){
 	});
 });
 
+//change the information of group
 app.post('/changegroup', function(req,res){
 	var member_id = req.session.userid;
 	var post_id = req.query.id;
@@ -240,6 +269,7 @@ app.post('/changegroup', function(req,res){
 	});
 });
 
+//load the change group page and fill the form with database information
 app.get('/changegroup', function(req,res){
 	var post_id = req.query.id;
 	var member_id = req.session.userid;
@@ -265,8 +295,8 @@ app.get('/changegroup', function(req,res){
 	});
 });
 
-app.get('/comment', function(req,res)
-{
+//retrieve all comments of a specific group
+app.get('/comment', function(req,res){
 	var activity_id = req.query.id;
 	connection.query('SELECT *, DATE_FORMAT(comment_date, "%Y-%m-%d") AS formatted_date FROM comment, member WHERE activity_id = ? AND member.member_id = comment.member_id', [activity_id], function(err, results, fields){
 		if(err){
@@ -282,8 +312,10 @@ app.get('/comment', function(req,res)
 	});
 });
 
+//call the quitGroup function of login module to quit a group
 app.post('/quitted',login.quitGroup);
 
+//retrieve all the groups joined by the user
 app.get('/mygroups', function(req,res){
 	var member_id = req.session.userid;
 	var sql = 'SELECT DISTINCT *, activity_topic, activity_creator_id FROM participate, activity WHERE member_id = ? AND participate.activity_id = activity.activity_id;';
@@ -304,6 +336,7 @@ app.get('/mygroups', function(req,res){
 	});
 });
 
+//post the comment to the database
 app.post('/postcomment', function(req,res){
 	var content = req.body.content;
 	var activity_id = req.body.id;
@@ -320,6 +353,24 @@ app.post('/postcomment', function(req,res){
 			})
 		}else{
 				res.render('pages/group',{"username":req.session.username});
+			}
+	});
+});
+
+//retrieve all participant of an activity
+app.get('/participant', function(req,res){
+	var activity_id = req.query.id;
+
+	var sql = 'SELECT member.member_id, member.member_name FROM participate, member WHERE activity_id = ? and participate.member_id = member.member_id ;';
+	
+	connection.query(sql, [activity_id], function(err, results){
+		if(err){
+			res.send({
+				"code":401,
+				"failed":"error ocurred"
+			})
+		}else{
+				res.send(results);
 			}
 	});
 });

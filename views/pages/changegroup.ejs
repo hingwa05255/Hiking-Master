@@ -16,7 +16,7 @@
 		<div class="wrap">
         <!-- title and description -->
         <h3>CHANGE ACTIVITY NOW!</h3>
-        <!-- start sign up form -->
+        <!-- start form -->
         <form name="signup" action="http://localhost:3000/changegroup?id=<%= data.activity_id %>" method="post">
             <label for="topic">Activity Title:</label>
             <input type="text" name="topic" value="<%= data.activity_topic %>" required/>
@@ -26,7 +26,7 @@
             <textarea type="text" name="description" value=""><%= data.activity_content %></textarea>
             <input type="submit" name="sent" class="submit_button" value="CHANGE" />
         </form>
-        <!-- end sign up form -->
+        <!-- end form -->
 		</div></div>
     <!-- end wrap div -->
 </body>

@@ -1,14 +1,17 @@
 var slideIndex = 1;
 showSlides(slideIndex);
 
+//switch to next or previous photo
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
 
+//show the current photo
 function currentSlide(n) {
   showSlides(slideIndex = n);
 }
 
+//function to display the nth photo
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");

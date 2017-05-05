@@ -13,7 +13,7 @@ function nextBackground() {
     current = current % backgrounds.length;
     header.css('background-image', backgrounds[current]);
 }
-setInterval(nextBackground, 1);
+setInterval(nextBackground, 1); //switch background photo form time to time
 
 header.css('background-image', backgrounds[0]);
 });

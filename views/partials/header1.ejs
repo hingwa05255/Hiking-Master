@@ -16,7 +16,7 @@
 			<li><a href="/group"><span class="glyphicon glyphicon-list-alt"></span> Groups</font></a></li>
 			<li><a href="/tips"><span class="glyphicon glyphicon-info-sign"></span> Tips</font></a></li>
 			</ul>
-			
+			<!-- check whether the user has logged in -->
 			<% if (session.username){ %>
 			<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <%=session.username%><span class="caret"></span></a>

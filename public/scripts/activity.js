@@ -29,12 +29,12 @@ function showActivity(activity_id) {
         btndiv.removeChild(btndiv.lastChild);
       }
     }
-	
+	//get the information of specified activity
 	var url = "activity?id=" + activity_id;
 	loadXMLDoc(url, function(jsonString) {
 		var json = JSON.parse(jsonString);
 		showingActivity = 1;
-		
+		//show the information in a table
 		var table = document.createElement("table");
 		table.setAttribute("width", "100%");
 		table.setAttribute("height", "100%");
@@ -100,7 +100,7 @@ function showActivity(activity_id) {
 		routebtn.appendChild(document.createTextNode("Route"));
 		route.appendChild(routebtn);
 		btndiv.appendChild(route);
-		
+		//show different buttons depending on the creator of the group
 		if (username == json.member_name){
 			var edit = document.createElement("a");
 			edit.setAttribute('href','changegroup?id=' + json.activity_id);
@@ -152,7 +152,7 @@ function showActivity(activity_id) {
 		content = document.createElement("textarea");
 		content.style.width = "92%";
 		content.style.height = "100px";
-		content.value = "Your comments...";
+		content.placeholder = "Your comments...";
 		content.name = "content";
 		commentform.appendChild(content);
 		id = document.createElement("input");
@@ -173,7 +173,7 @@ function showActivity(activity_id) {
   }
 
 var activity_id = QueryString.id;
-
+//show the list of all groups
 if (activity_id == null) {
 	loadXMLDoc("activity", function(jsonString) {
 		var json = JSON.parse(jsonString);

@@ -6,6 +6,7 @@ const saltRounds = 10;
 const myPlaintextPassword = 's0/\/\P4$$w0rD';
 const someOtherPlaintextPassword = 'not_bacon';
 
+//connect to the mysql database
 var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
@@ -15,11 +16,13 @@ var connection = mysql.createConnection({
 
 var app = express();
 
+//use session
 app.use(session({secret: 'ssshhhhh',
     resave: true,
     saveUninitialized: true
 }));
 
+//Insert user inputs to register an account
 exports.register = function(req,res){
 	var member_name = req.body.username;
 	var member_gender = req.body.gender;
@@ -31,6 +34,7 @@ exports.register = function(req,res){
 	var sql = 'INSERT INTO member (member_name, member_password, member_email, member_active, member_dateofbirth, member_gender) VALUES (?, ?, ?, ?, ?, ?);';
 	var parameters = [member_name, member_password, member_email, member_active, member_dateofbirth, member_gender];
 	
+	//check whether the username is used
 	connection.query('SELECT * FROM member WHERE member_name = ?',[member_name], function(err, results) {
 		if (err) {
 			res.render('pages/error',{"code":100,"failed":"Error Ocurred!"});
@@ -39,6 +43,7 @@ exports.register = function(req,res){
 			res.render('pages/error',{"code":100,"failed":"The username has been used!"});
 			return;
 			} else {
+				//check whether the email address is used
 				connection.query('SELECT * FROM member WHERE member_email = ?',[member_email], function(err, results1) {
 					if (err) {
 						res.render('pages/error',{"code":100,"failed":"Error Ocurred!"});
@@ -47,6 +52,7 @@ exports.register = function(req,res){
 						res.render('pages/error',{"code":100,"failed":"The email has been used!"});
 						return;
 						} else {
+							//insert new record to member table
 							connection.query(sql, parameters, function(err, rows) {
 								if (err) {
 									res.render('pages/error',{"code":100,"failed":"Error Ocurred!"});
@@ -62,6 +68,7 @@ exports.register = function(req,res){
 	});
 }
 
+//login function
 exports.login = function(req,res){
 	
 	var member_name = req.body.username;
@@ -91,6 +98,7 @@ exports.login = function(req,res){
   });
 }
 
+//function to change password
 exports.changepassword = function(req,res){
 	var member_name = req.session.username;
 	var member_oldpassword = req.body.password;
@@ -101,6 +109,7 @@ exports.changepassword = function(req,res){
 			res.render('pages/error',{"code":300,"failed":"Error Ocurred!"});
 		}else{
 			if(results.length > 0){
+				//check whether the original password is correct
 				bcrypt.compare(member_oldpassword, results[0].member_password, function(err, doesMatch){
 					if(doesMatch){
 						var sql = 'UPDATE member SET member_password = ? WHERE member_name = ?;';
@@ -123,6 +132,7 @@ exports.changepassword = function(req,res){
 	});
 }
 
+//function to search for routes
 exports.searchRoute = function(req,res){
 	var trailname = req.query.search;
 	if(trailname == null) {
@@ -152,6 +162,7 @@ exports.searchRoute = function(req,res){
 	}
 }
 
+//function to quit a group
 exports.quitGroup = function(req,res){
 	var act_id = req.body.activity_id;
 	var member_id = req.session.userid;
